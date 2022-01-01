@@ -14,6 +14,8 @@ import styles from '../styles/Home.module.css';
 export default function Roadmap(props) {
     gsap.registerPlugin(ScrollTrigger);
 
+    const darkThemePrimary = "#1649ff";
+    const lightThemePrimary = "#70c1ff";
     const roadmapHeaderRef = useRef();
   
     // Loads animations for elements of the page.
@@ -33,10 +35,10 @@ export default function Roadmap(props) {
             {/* ~~~~~~~~~~~~~~~~~~~ Early Q1 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-right"
-              contentStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? '#0a0af0' : '#70c1ff'}` }}
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
               date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
@@ -67,10 +69,10 @@ export default function Roadmap(props) {
             {/* ~~~~~~~~~~~~~~~~~~~ Late Q1 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-left"
-              contentStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? '#0a0af0' : '#70c1ff'}` }}
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
               date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
@@ -101,10 +103,10 @@ export default function Roadmap(props) {
             {/* ~~~~~~~~~~~~~~~~~~~ Early Q2 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-right"
-              contentStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? '#0a0af0' : '#70c1ff'}` }}
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
               date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
@@ -123,10 +125,10 @@ export default function Roadmap(props) {
             {/* ~~~~~~~~~~~~~~~~~~~ Late Q2 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-left"
-              contentStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? '#0a0af0' : '#70c1ff'}` }}
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
               date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
@@ -145,10 +147,10 @@ export default function Roadmap(props) {
             {/* ~~~~~~~~~~~~~~~~~~~ Q3 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-right"
-              contentStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? '#0a0af0' : '#70c1ff'}` }}
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
               date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
@@ -171,10 +173,10 @@ export default function Roadmap(props) {
             {/* ~~~~~~~~~~~~~~~~~~~ Q4 2022 and Beyond ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-left"
-              contentStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? '#0a0af0' : '#70c1ff'}` }}
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
               date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p" className={styles.lastTimelineElement}>
@@ -183,7 +185,7 @@ export default function Roadmap(props) {
             </VerticalTimelineElement>
             
             <VerticalTimelineElement
-              iconStyle={{ background: props.useDarkTheme ? '#0a0af0' : '#70c1ff', color: props.useDarkTheme ? '#fff' : '#000' }}
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             />
           </VerticalTimeline>

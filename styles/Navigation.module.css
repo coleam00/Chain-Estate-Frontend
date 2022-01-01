@@ -7,11 +7,11 @@
   }
 
 .darkModeIcon {
-    color: #0a0af0;
+    color: var(--dark-theme-primary-color);
 }
 
 .lightModeIcon {
-    color: #70c1ff;
+    color: var(--light-theme-primary-color);
 }
 
 .navBrandText {

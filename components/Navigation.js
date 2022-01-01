@@ -1,7 +1,6 @@
 import { Grid, Typography, Switch } from '@mui/material';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useEffect } from 'react';
 import clsx from 'clsx';
 import { gsap } from "gsap";
 import { IconContext } from "react-icons";
@@ -90,7 +89,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                             {useDarkTheme ? <DarkModeIcon className={styles.darkModeIcon} fontSize="large" /> : <LightModeIcon className={styles.lightModeIcon} fontSize="large" />}
                             <Switch checked={useDarkTheme} color="primary" onChange={e => setUseDarkTheme(e.target.checked)} />
                         </div>
-                        <IconContext.Provider value={{ size:"1.7rem", color: useDarkTheme ? "#0a0af0" : "#70c1ff" }} className={styles.socialIcons}>
+                        <IconContext.Provider value={{ size:"1.7rem", color: useDarkTheme ? "#1649ff" : "#70c1ff" }} className={styles.socialIcons}>
                             <div className={styles.socialIcons}>
                                 <div className={styles.socialIcon}>
                                     <a href="https://discord.gg/ahHu45hEvv" target="_blank" rel="noreferrer">

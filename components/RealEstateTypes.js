@@ -34,15 +34,15 @@ export default function RealEstateTypes(props) {
             </Typography>
           </Grid>
           <Grid item xs={3} className={styles.realEstateTypeGrid} id="realEstateTypes1" ref={realEstateTypesRef1}>
-            <Image src={multiFamilyHomePic} layout="responsive" />
-            <Button href="/multifamilyhomes" variant="contained" color="secondary" className={clsx(styles.realEstateBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
-              Multi Family Homes
-            </Button>
-          </Grid>
-          <Grid item xs={3} className={styles.realEstateTypeGrid} id="realEstateTypes2" ref={realEstateTypesRef2}>
             <Image src={singleFamilyHomePic} layout="responsive" />
             <Button href="/singlefamilyhomes" variant="contained" color="secondary" className={clsx(styles.realEstateBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
               Single Family Homes
+            </Button>
+          </Grid>
+          <Grid item xs={3} className={styles.realEstateTypeGrid} id="realEstateTypes2" ref={realEstateTypesRef2}>
+            <Image src={multiFamilyHomePic} layout="responsive" />
+            <Button href="/multifamilyhomes" variant="contained" color="secondary" className={clsx(styles.realEstateBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+              Multi Family Homes
               </Button>
           </Grid>
           <Grid item xs={3} className={styles.realEstateTypeGrid} id="realEstateTypes3" ref={realEstateTypesRef3}>

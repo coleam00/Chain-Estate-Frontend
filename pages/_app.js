@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
   });
 
   const darkTheme = createTheme({
-    // Primary - #0a0af0 previous - #90caf9
+    // Primary - #1649ff, previous - #0a0af0
     // Secondary - #cfcfcf
     // Paper/card - #141a2a
     palette: {
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
         paper: '#141a2a',
       },
       primary: {
-        main: '#0a0af0',
+        main: '#1649ff',
       },
       secondary: {
         main: '#cfcfcf',

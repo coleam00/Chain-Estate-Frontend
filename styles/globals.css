@@ -1,3 +1,8 @@
+:root {
+  --dark-theme-primary-color: #1649ff;
+  --light-theme-primary-color: #70c1ff;
+}
+
 html,
 body {
   padding: 0;

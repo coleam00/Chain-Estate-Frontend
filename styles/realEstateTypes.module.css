@@ -9,11 +9,11 @@
 }
 
 .darkHeader {
-    border-bottom: 5px solid #0a0af0;
+    border-bottom: 5px solid var(--dark-theme-primary-color);
 }
 
 .lightHeader {
-    border-bottom: 5px solid #70c1ff;
+    border-bottom: 5px solid var(--light-theme-primary-color);
 }
 
 .prosConsHeader {

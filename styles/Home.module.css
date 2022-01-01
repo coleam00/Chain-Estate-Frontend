@@ -18,32 +18,34 @@
 }
 
 .introTextTypographyDark {
-  text-shadow: 2px 2px 75px #0a0af0 !important;
+  text-shadow: 2px 2px 75px var(--dark-theme-primary-color) !important;
 }
 
 .introTextTypographyLight {
-  text-shadow: 3px 3px 35px #70c1ff !important;
+  text-shadow: 3px 3px 35px var(--light-theme-primary-color) !important;
 }
 
 .boldTextDark {
-  color: #0a0af0 !important;
+  color: var(--dark-theme-primary-color) !important;
 }
 
 .boldTextLight {
-  color: #70c1ff !important;
+  color: var(--light-theme-primary-color) !important;
 }
 
 .housePicContainer {
   padding-right: 10% !important;
 }
 
+/*
 .housePicDark {
-  background: radial-gradient(#0a0af0, rgba(33, 37, 41, 0.5) 75%, rgba(33, 37, 41, 0) 100%) !important;
+  background: radial-gradient(var(--dark-theme-primary-color), rgba(33, 37, 41, 0.5) 75%, rgba(33, 37, 41, 0) 100%) !important;
 }
 
 .housePicLight {
-  background: radial-gradient(#70c1ff, rgba(219, 241, 255, 0.5) 70%, rgba(219, 241, 255, 0.1) 100%) !important;
+  background: radial-gradient(var(--light-theme-primary-color), rgba(219, 241, 255, 0.5) 70%, rgba(219, 241, 255, 0.1) 100%) !important;
 }
+*/
 
 .processGrid {
   margin-top: 10% !important;
@@ -79,8 +81,8 @@
 }
 
 .avatarDarkTheme {
-  background-color: #0a0af0 !important;
-  border: 1px solid #0a0af0 !important;
+  background-color: var(--dark-theme-primary-color) !important;
+  border: 1px solid var(--dark-theme-primary-color) !important;
   color: white !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -89,8 +91,8 @@
 }
 
 .avatarLightTheme {
-  background-color: #70c1ff !important;
-  border: 1px solid #70c1ff !important;
+  background-color: var(--light-theme-primary-color) !important;
+  border: 1px solid var(--light-theme-primary-color) !important;
   color: white !important;
   margin-left: auto !important;
   margin-right: auto !important;
