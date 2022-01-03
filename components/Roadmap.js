@@ -32,17 +32,29 @@ export default function Roadmap(props) {
           </Grid>
 
           <VerticalTimeline className={clsx(styles.verticalTimelineDiv, props.useDarkTheme ? "timeline-dark-theme" : "timeline-light-theme")}>
-            {/* ~~~~~~~~~~~~~~~~~~~ Early Q1 2022 ~~~~~~~~~~~~~~~~~~ */}
+            {/* ~~~~~~~~~~~~~~~~~~~ Q1 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-right"
               contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
               contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
-              date="Early Q1 2022"
+              date="Q1 2022"
               iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
-                <ArrowForwardIcon /> Release of the Chain Estate Token Smart Contract
+                <ArrowForwardIcon /> Release of the Chain Estate Token Smart Contracts
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> Whitepaper and Discord Server Creation
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> Get listed on PancakeSwap
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon />  Pre-Sale Offering
               </Typography>
               <br/>
               <Typography variant="p">
@@ -50,97 +62,50 @@ export default function Roadmap(props) {
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> WhitePaper Release
+                <ArrowForwardIcon /> First Token Airdrop
               </Typography>
               <br/>
-              <Typography variant="p">
-                <ArrowForwardIcon /> Website/Twitter/Discord Creation
-              </Typography>
-              <br/>
-              <Typography variant="p">
+              <Typography variant="p" className={styles.lastTimelineElement}>
                 <ArrowForwardIcon /> Initial Marketing Campaigns
               </Typography>
-              <br/>
-              <Typography variant="p" className={styles.lastTimelineElement}>
-                <ArrowForwardIcon /> Get listed on PancakeSwap
-              </Typography>
             </VerticalTimelineElement>
 
-            {/* ~~~~~~~~~~~~~~~~~~~ Late Q1 2022 ~~~~~~~~~~~~~~~~~~ */}
+            {/* ~~~~~~~~~~~~~~~~~~~ Q2 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-left"
               contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
               contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
-              date="Early Q1 2022"
+              date="Q2 2022"
               iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
+              
             >
               <Typography variant="p">
-                <ArrowForwardIcon /> Pre-Sale
+                <ArrowForwardIcon /> CoinMarketCap and CoinGecko Listings
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Get listed on CoinGecko and CoinMarketCap
+                <ArrowForwardIcon /> Start the Audit Process by Certik
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Reach 2,500 Holders by End of the Quarter
+                <ArrowForwardIcon /> Purchase First Properties
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Staking Rewards Released
+                <ArrowForwardIcon /> Launch NFT Marketplace
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Continue Marketing Campaigns
+                <ArrowForwardIcon /> Hold 3 More Airdrops
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> Further Expand Marketing Campaigns
               </Typography>
               <br/>
               <Typography variant="p" className={styles.lastTimelineElement}>
-                <ArrowForwardIcon /> Get Chain Estate Audited
-              </Typography>
-            </VerticalTimelineElement>
-
-            {/* ~~~~~~~~~~~~~~~~~~~ Early Q2 2022 ~~~~~~~~~~~~~~~~~~ */}
-            <VerticalTimelineElement
-              className="vertical-timeline-element-right"
-              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
-              date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
-              icon={<ArrowDownwardIcon />}
-            >
-              <Typography variant="p">
-                <ArrowForwardIcon /> Purchase First Property
-              </Typography>
-              <br/>
-              <Typography variant="p">
-                <ArrowForwardIcon /> NFT Marketplace Released
-              </Typography>
-              <br/>
-              <Typography variant="p" className={styles.lastTimelineElement}>
-                <ArrowForwardIcon /> Continue/Expand Marketing Campaigns
-              </Typography>
-            </VerticalTimelineElement>
-
-            {/* ~~~~~~~~~~~~~~~~~~~ Late Q2 2022 ~~~~~~~~~~~~~~~~~~ */}
-            <VerticalTimelineElement
-              className="vertical-timeline-element-left"
-              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
-              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
-              date="Early Q1 2022"
-              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
-              icon={<ArrowDownwardIcon />}
-            >
-              <Typography variant="p">
-                <ArrowForwardIcon /> Reach 5,000 Holders by End of the Quarter
-              </Typography>
-              <br/>
-              <Typography variant="p">
-                <ArrowForwardIcon /> Recruit More Team Members to Help Manage Real Estate
-              </Typography>
-              <br/>
-              <Typography variant="p" className={styles.lastTimelineElement}>
-                <ArrowForwardIcon /> Expand to Purchasing More Types of Properties
+                <ArrowForwardIcon /> Reach 2,500 Concurrent Holders
               </Typography>
             </VerticalTimelineElement>
 
@@ -149,38 +114,72 @@ export default function Roadmap(props) {
               className="vertical-timeline-element-right"
               contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
               contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
-              date="Early Q1 2022"
+              date="Q3 2022"
               iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
-                <ArrowForwardIcon /> Reach 10,000 Holders by End of the Quarter
+                <ArrowForwardIcon /> Hire Larger Team to Help Manage Real Estate
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Expand to Commercial Real Estate
+                <ArrowForwardIcon /> Continue Marketing Outreach
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Developer Funds Start to Vest
+                <ArrowForwardIcon /> Continue Montly Airdrops
               </Typography>
               <br/>
               <Typography variant="p" className={styles.lastTimelineElement}>
-                <ArrowForwardIcon /> Get Listed on Centralized Exchanges
+                <ArrowForwardIcon /> Reach 5,000 Concurrent Holders
               </Typography>
             </VerticalTimelineElement>
 
-            {/* ~~~~~~~~~~~~~~~~~~~ Q4 2022 and Beyond ~~~~~~~~~~~~~~~~~~ */}
+            {/* ~~~~~~~~~~~~~~~~~~~ Q4 2022 ~~~~~~~~~~~~~~~~~~ */}
             <VerticalTimelineElement
               className="vertical-timeline-element-left"
               contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
               contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
-              date="Early Q1 2022"
+              date="Q4 2022"
               iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
               icon={<ArrowDownwardIcon />}
             >
+              <Typography variant="p">
+                <ArrowForwardIcon /> Expand to Apartments and Commercial Properties
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> Apply to be Listed on Centralied Exchanges
+              </Typography>
+              <br/>
               <Typography variant="p" className={styles.lastTimelineElement}>
-                <ArrowForwardIcon /> More to Come...
+                <ArrowForwardIcon /> Reach 10,000 Concurrent Holders
+              </Typography>
+            </VerticalTimelineElement>
+
+            {/* ~~~~~~~~~~~~~~~~~~~ 2023 and Beyond ~~~~~~~~~~~~~~~~~~ */}
+            <VerticalTimelineElement
+              className="vertical-timeline-element-left"
+              contentStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#fff' }}
+              contentArrowStyle={{ borderRight: `7px solid ${props.useDarkTheme ? darkThemePrimary : lightThemePrimary}` }}
+              date="2023 and Beyond"
+              iconStyle={{ background: props.useDarkTheme ? darkThemePrimary : lightThemePrimary, color: props.useDarkTheme ? '#fff' : '#000' }}
+              icon={<ArrowDownwardIcon />}
+            >
+              <Typography variant="p">
+                <ArrowForwardIcon /> Continue to Expand Real Estate Portfolio
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> Grow the Real Estate Management Team
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> More NFTs will be Minted for New Properties
+              </Typography>
+              <br/>
+              <Typography variant="p" className={styles.lastTimelineElement}>
+                <ArrowForwardIcon /> And Much More to Come!
               </Typography>
             </VerticalTimelineElement>
             

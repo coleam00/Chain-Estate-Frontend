@@ -75,7 +75,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                 Roadmap
                             </Typography>
                         </Nav.Link>
-                        <Nav.Link href="https://chain-estate.gitbook.io/chain-estate-whitepaper/" className={styles.navPadding}>
+                        <Nav.Link href="https://chain-estate.gitbook.io/chain-estate-whitepaper/" target="_blank" className={styles.navPadding}>
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
                                 White Paper
                             </Typography>
