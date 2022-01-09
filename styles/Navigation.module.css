@@ -90,9 +90,6 @@
   }
 
 @media (max-width: 991px) {
-    .navGridDark {
-        background-color: rgba(33, 37, 41, 1) !important;
-    }
     .socialIcons {
         display: flex !important;
         align-items: center !important;

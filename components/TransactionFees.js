@@ -22,18 +22,34 @@ export default function TransactionFees(props) {
     const feeBox2Ref = useRef();
     const feeBox3Ref = useRef();
 
-      // Loads animations for elements of the page.
+    const calculateAnimationDuration = (target) => {
+        const width = target.getBoundingClientRect().right;
+        if (width > 600) {
+            return 1;
+        }
+        else {
+            return 0.5;
+        }
+    }
+
+  // Loads animations for elements of the page.
   useEffect(() => {    
     gsap.from(feeHeaderRef.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#feeHeader", start: "bottom bottom" } });
     gsap.from(feeBox1Ref.current, { x: function(index, target, targets) {
       return target.getBoundingClientRect().right;
-    }, opacity: 0, duration: 1, scrollTrigger: { trigger: "#feeBox1", start: "bottom bottom"} });
+    }, opacity: 0, duration: function (index, target, targets) {
+        return calculateAnimationDuration(target);
+    }, scrollTrigger: { trigger: "#feeBox1", start: "bottom bottom"} });
     gsap.from(feeBox2Ref.current, { x: function(index, target, targets) {
       return target.getBoundingClientRect().right;
-    }, opacity: 0, duration: 1, scrollTrigger: { trigger: "#feeBox2", start: "bottom bottom"} });
+    }, opacity: 0, duration: function (index, target, targets) {
+        return calculateAnimationDuration(target);
+    }, scrollTrigger: { trigger: "#feeBox2", start: "bottom bottom"} });
     gsap.from(feeBox3Ref.current, { x: function(index, target, targets) {
       return target.getBoundingClientRect().right;
-    }, opacity: 0, duration: 1, scrollTrigger: { trigger: "#feeBox3", start: "bottom bottom"} });
+    }, opacity: 0, duration: function (inde, target, targets) {
+        return calculateAnimationDuration(target);
+    }, scrollTrigger: { trigger: "#feeBox3", start: "bottom bottom"} });
   }, [])
 
     return (

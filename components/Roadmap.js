@@ -81,15 +81,15 @@ export default function Roadmap(props) {
               
             >
               <Typography variant="p">
-                <ArrowForwardIcon /> CoinMarketCap and CoinGecko Listings
-              </Typography>
-              <br/>
-              <Typography variant="p">
                 <ArrowForwardIcon /> Start the Audit Process by Certik
               </Typography>
               <br/>
               <Typography variant="p">
                 <ArrowForwardIcon /> Purchase First Properties
+              </Typography>
+              <br/>
+              <Typography variant="p">
+                <ArrowForwardIcon /> CoinMarketCap and CoinGecko Listings
               </Typography>
               <br/>
               <Typography variant="p">
