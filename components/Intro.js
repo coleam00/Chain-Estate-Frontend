@@ -31,8 +31,8 @@ export default function Intro(props) {
             <b className={props.useDarkTheme ? styles.boldTextDark : styles.boldTextLight}>Invest</b> in Real Estate on the <b className={props.useDarkTheme ? styles.boldTextDark : styles.boldTextLight}>Blockchain</b>
         </Typography>
         <Typography variant="p">
-            3% of all Chain Estate transaction fees are sent to a token pool
-            used to purchase real estate. 100% of the cash flow from these properties are then
+            3% of all Chain Estate DAO transaction fees are sent to a token pool
+            used to purchase real estate that members vote on. 100% of the cash flow from these properties are then
             distributed to NFT holders of the real estate who are also partial owners of the properties.
         </Typography>
         </Grid>

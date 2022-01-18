@@ -27,7 +27,7 @@ export default function Roadmap(props) {
         <Grid container id="roadmap" justifyContent="center" alignItems="center">
           <Grid item xs={12}>
             <Typography variant="h4" id="roadmapHeader" ref={roadmapHeaderRef} className={styles.roadmapHeader}>
-              Chain Estate Roadmap
+              Chain Estate DAO Roadmap
             </Typography>
           </Grid>
 
@@ -42,7 +42,7 @@ export default function Roadmap(props) {
               icon={<ArrowDownwardIcon />}
             >
               <Typography variant="p">
-                <ArrowForwardIcon /> Release of the Chain Estate Token Smart Contracts
+                <ArrowForwardIcon /> Release of the Chain Estate DAO Smart Contracts
               </Typography>
               <br/>
               <Typography variant="p">

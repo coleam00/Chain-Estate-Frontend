@@ -45,7 +45,7 @@ export default function apartmentComplexes(props) {
                 </Typography>
             </Grid>
             <Grid item xs={8} className={styles.cashFlowText}>
-                Say for example Chain Estate buys an apartment complex for $5,000,000 and there are 50 renters who each
+                Say for example Chain Estate DAO buys an apartment complex for $5,000,000 and there are 50 renters who each
                 pay $750. In that case, the income from the property is $37,500 per month. The insurance is $2500 a month, the
                 property taxes are $4000 a month, and staffing is $5000 a month. Renters will be paying for utilities, so that leaves a total cash flow
                 of $37,500 - $2500 - $4000 - $5000 or $26,000. So if there are 100 NFTs for the property, each NFT will yield a profit

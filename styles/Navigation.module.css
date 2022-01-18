@@ -14,8 +14,12 @@
     color: var(--light-theme-primary-color);
 }
 
+nav .container {
+    padding-left: 0 !important;
+}
+
 .navBrandText {
-    margin-left: 15% !important;
+    margin-left: 0% !important;
 }
 
 .socialIcons {
@@ -41,7 +45,7 @@
     }
 }
 
-@media (max-width: 1250px) and (min-width: 1151px) {
+@media (max-width: 1250px) and (min-width: 1150px) {
     .navBrandText {
         font-size: 16px !important;
     }
@@ -52,7 +56,7 @@
     }
 }
 
-@media (max-width: 1150px) and (min-width: 992px) {
+@media (max-width: 1150px) and (min-width: 1070px) {
     .navBrandText {
         font-size: 14px !important;
     }
@@ -60,6 +64,17 @@
     .navText {
         font-size: 12px !important;
         margin-top: 5px !important;
+    }
+}
+
+@media (max-width: 1070px) and (min-width: 992px) {
+    .navBrandText {
+        font-size: 12px !important;
+    }
+
+    .navText {
+        font-size: 11px !important;
+        margin-top: 8px !important;
     }
 }
 

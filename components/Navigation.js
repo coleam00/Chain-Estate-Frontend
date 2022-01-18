@@ -46,7 +46,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                         <Navbar.Brand href="/">
                             {/*<img alt="" src={useDarkTheme ? "/houseIconDarkTheme.png" : "/houseIconLightTheme.png"} width="35" height="35" className="d-inline-block align-top" />*/}
                             <Typography variant="p" className={styles.navBrandText}>
-                                Chain Estate
+                                Chain Estate DAO
                             </Typography>
                         </Navbar.Brand>
                     </Container>
@@ -83,6 +83,11 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                         <Nav.Link href="/presale" className={styles.navPadding}>
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
                                 Pre-Sale
+                            </Typography>
+                        </Nav.Link>
+                        <Nav.Link href="/vote" className={styles.navPadding}>
+                            <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
+                                Voting
                             </Typography>
                         </Nav.Link>
                         <div className={styles.changeThemeDiv}>

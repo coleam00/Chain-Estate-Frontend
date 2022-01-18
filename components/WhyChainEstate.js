@@ -32,14 +32,14 @@ export default function WhyChainEstate(props) {
         <Grid container justifyContent="center" alignItems="center" className={styles.whyChainEstateGrid}>
           <Grid item xs={12}>
             <Typography id="whyChainEstateHeader" ref={whyChainEstateHeaderRef} variant="h4" className={styles.whyChainEstateHeader}>
-              Why Invest in Chain Estate?
+              Why Invest in Chain Estate DAO?
             </Typography>
           </Grid>
           <Grid id="whyChainEstate" item xs={8} className={styles.whyChainEstateTextGrid}>
             <Grid container justifyContent="center" alignItems="center">
               <Grid item xs={12} ref={whyChainEstateRef1}>
                 <Typography variant="p">
-                Many projects or companies fade away over time, so why is Chain Estate different?  The answer is simple. The project is directly tied to the 
+                Many projects or companies fade away over time, so why is Chain Estate DAO different?  The answer is simple. The project is directly tied to the 
                 longest lasting market in the world - Real Estate. Over time, property values have consistently gone 
                 up and rarely see large price fluctuations. 
                 </Typography>

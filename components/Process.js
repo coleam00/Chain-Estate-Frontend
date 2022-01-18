@@ -34,6 +34,9 @@ export default function Process(props) {
   const learnMoreBtnRef = useRef();
   const getStartedBtnRef = useRef();
 
+  const daoHeaderRef = useRef();
+  const daoTextRef = useRef();
+
   // Loads animations for elements of the page.
   useEffect(() => {
     gsap.from(processHeaderRef.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processHeader", start: "bottom bottom" } });
@@ -50,13 +53,16 @@ export default function Process(props) {
 
     gsap.from(learnMoreBtnRef.current, { opacity: 0, y: 200, duration: 1, scrollTrigger: {trigger: "#learnMoreBtn", start: "top bottom" } });
     gsap.from(getStartedBtnRef.current, { opacity: 0, y: 200, duration: 1, scrollTrigger: { trigger: "#getStartedBtn", start: "top bottom" } });
+
+    gsap.from(daoHeaderRef.current, { opacity: 0, duration: 2, scrollTrigger: {trigger: "#daoHeader", start: "bottom bottom" } });
+    gsap.from(daoTextRef.current, { opacity: 0, duration: 1, scrollTrigger: { trigger: "#daoText", start: "bottom bottom" } });
   }, [])
 
     return (
       <Grid container id="about" justifyContent="center" alignItems="center" spacing={4} className={styles.processGrid}>
         <Grid item xs={12} className={styles.processHeader}>
           <Typography variant="h4" id="processHeader" ref={processHeaderRef}>
-            How Do I Become a Part of Chain Estate?
+            How Do I Become a Part of Chain Estate DAO?
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGrid}>
@@ -148,7 +154,7 @@ export default function Process(props) {
                   Hold Tokens for Air Drops
                 </Typography>
                 <Typography variant="p" component="div" className="mt-4">
-                  Chain Estate will have monthly air drops starting mid 2022 that reward
+                  Chain Estate DAO will have monthly air drops starting mid 2022 that reward
                   you based on the number of tokens you have and how long you&apos;ve had them for.
                 </Typography>
               </CardContent>
@@ -226,6 +232,20 @@ export default function Process(props) {
             className={clsx(styles.largeBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
             Get Started
           </Button>
+        </Grid>
+        <Grid item xs={12} className={styles.daoHeaderGrid}>
+          <Typography variant="h4" ref={daoHeaderRef} id="daoHeader">
+            What Makes Chain Estate a DAO?
+          </Typography>
+        </Grid>
+        <Grid item xs={8} className={styles.daoTextGrid}>
+          <Typography variant="p" ref={daoTextRef} id="daoText">
+            Chain Estate DAO investors will help decide what properties the project invests in. Each time funds are raised
+            to purchase a property, a poll will be released to the community through the voting smart contract, and each
+            member can vote on what property Chain Estate DAO should purchase. Our team will be analyzing properties that have 
+            great potential and give suggestions to the community based on expert analysis, but ultimately it is up to 
+            the community for which properties Chain Estate will acquire.
+          </Typography>
         </Grid>
       </Grid>
     )

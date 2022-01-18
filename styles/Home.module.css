@@ -114,6 +114,10 @@
   padding-bottom: 9% !important;
 }
 
+.daoHeaderGrid {
+  margin-top: 10% !important;
+}
+
 .feeContentGrid {
   margin-bottom: 8% !important;
 }
@@ -325,7 +329,7 @@
     height: 400px !important;
   }
 
-  .whyChainEstateTextGrid {
+  .whyChainEstateTextGrid, .daoTextGrid {
     max-width: 100% !important;
     flex-basis: 100% !important;
   }

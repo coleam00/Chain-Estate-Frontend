@@ -45,7 +45,7 @@ export default function singleFamilyHomes(props) {
                 </Typography>
             </Grid>
             <Grid item xs={8} className={styles.cashFlowText}>
-                Say for example Chain Estate buys the single family home for $500,000 and the renters of the home pay $2000 a month. 
+                Say for example Chain Estate DAO buys the single family home for $500,000 and the renters of the home pay $2000 a month. 
                 The insurance is $125 a month and the property taxes are $275 a month. Renters will be paying for utilities, so that leaves a total cash flow
                 of $2000 - $125 - $275 or $1600. So if there are 100 NFTs for the property, each NFT will yield a profit
                 of $16. Someone who owns 10 of the 100 NFTs will receive $160 a month from the property and will also

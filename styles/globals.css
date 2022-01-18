@@ -67,6 +67,10 @@ a {
   box-shadow: 0 0 0 4px #48494f !important;
 }
 
+nav .container {
+  padding-left: 0 !important;
+}
+
 @media (max-width: 1169px) {
   
   .vertical-timeline-element-date {

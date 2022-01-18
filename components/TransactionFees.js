@@ -8,7 +8,7 @@ import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import HouseIcon from '@mui/icons-material/House';
 import CabinIcon from '@mui/icons-material/Cabin';
 import PersonIcon from '@mui/icons-material/Person';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import GoogleIcon from '@mui/icons-material/Google';
 
@@ -56,7 +56,7 @@ export default function TransactionFees(props) {
       <Grid container id="tokenomics" justifyContent="center" alignItems="center" spacing={4} className={styles.transactionFeesGrid}>
         <Grid item xs={12}>
         <Typography variant="h4" id="feeHeader" ref={feeHeaderRef} className={styles.feeHeader}>
-            The Chain Estate Transaction Fees are Split 3 Ways
+            The Chain Estate DAO Transaction Fees are Split 3 Ways
         </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGridFee}>
@@ -116,7 +116,7 @@ export default function TransactionFees(props) {
                 1%
                 </Typography>
                 <Typography variant="p" component="div" className="mt-4">
-                Is sent to the developer wallet. The developers of Chain Estate make no profits from the
+                Is sent to the developer wallet. The developers of Chain Estate DAO make no profits from the
                 real estate itself, so this is how the project supports them.
                 </Typography>
             </CardContent>
@@ -130,7 +130,7 @@ export default function TransactionFees(props) {
                     <Grid container justifyContent="center" alignItems="center" className={styles.feeContentGrid}>
                     <Grid item xs={3}>
                         <Avatar className={props.useDarkTheme ? styles.avatarDarkTheme : styles.avatarLightTheme} sx={{ width: 70, height: 70 }}>
-                        <FacebookIcon sx={{ width: 40, height: 40 }} />
+                        <TwitterIcon sx={{ width: 40, height: 40 }} />
                         </Avatar>
                     </Grid>
                     <Grid item xs={3}>
@@ -148,8 +148,8 @@ export default function TransactionFees(props) {
                     1%
                     </Typography>
                     <Typography variant="p" component="div" className="mt-4">
-                    Is used for marketing - purchasing advertising on Facebook, YouTube, Google, etc.
-                    The Chain Estate developer team is committed to pushing for the growth of the project
+                    Is used for marketing - purchasing advertising on Twitter, YouTube, Google, etc.
+                    The Chain Estate DAO developer team is committed to pushing for the growth of the project
                     on all platforms imaginable. 
                     </Typography>
                 </CardContent>

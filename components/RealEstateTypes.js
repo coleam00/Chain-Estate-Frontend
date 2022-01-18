@@ -30,7 +30,7 @@ export default function RealEstateTypes(props) {
         <Grid container id="realEstateTypesGrid" justifyContent="center" alignItems="center" spacing={4} className={styles.realEstateTypesGrid}>
           <Grid item xs={12} className="realEstateTypesHeaderWrapper">
             <Typography variant="h4" id="realEstateTypesHeader" ref={realEstateTypesHeaderRef} className={styles.realEstateTypesHeader}>
-              Chain Estate Will Invest in 3 Types of Real Estate
+              Chain Estate DAO Will Invest in 3 Types of Real Estate
             </Typography>
           </Grid>
           <Grid item xs={3} className={styles.realEstateTypeGrid} id="realEstateTypes1" ref={realEstateTypesRef1}>

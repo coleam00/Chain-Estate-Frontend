@@ -45,7 +45,7 @@ export default function multiFamilyHomes(props) {
                 </Typography>
             </Grid>
             <Grid item xs={8} className={styles.cashFlowText}>
-                Say for example Chain Estate buys the multi family home for $750,000 and there are four renters who each
+                Say for example Chain Estate DAO buys the multi family home for $750,000 and there are four renters who each
                 pay $800. In that case, the income from the property is $3200. The insurance is $150 a month and the
                 property taxes are $350 a month. Renters will be paying for utilities, so that leaves a total cash flow
                 of $3200 - $150 - $350 or $2700. So if there are 100 NFTs for the property, each NFT will yield a profit
