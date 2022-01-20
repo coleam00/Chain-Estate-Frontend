@@ -44,7 +44,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                 <Navbar.Text className={styles.navBarBrand}>
                     <Container>
                         <Navbar.Brand href="/">
-                            {/*<img alt="" src={useDarkTheme ? "/houseIconDarkTheme.png" : "/houseIconLightTheme.png"} width="35" height="35" className="d-inline-block align-top" />*/}
+                            <img alt="" src={useDarkTheme ? "/houseIconDarkTheme.png" : "/houseIconLightTheme.png"} width="35" height="35" className={clsx(styles.logoImage, "align-top")} />
                             <Typography variant="p" className={styles.navBrandText}>
                                 Chain Estate DAO
                             </Typography>
@@ -102,7 +102,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                     </a>
                                 </div>
                                 <div className={clsx(styles.socialIcon, styles.socialIconLast)}>
-                                    <a href="https://twitter.com/ChainEstate1" target="_blank" rel="noreferrer">
+                                    <a href="https://twitter.com/chainestatedao" target="_blank" rel="noreferrer">
                                         <FaTwitter />
                                     </a>
                                 </div>

@@ -19,7 +19,7 @@ nav .container {
 }
 
 .navBrandText {
-    margin-left: 0% !important;
+    margin-left: 5% !important;
 }
 
 .socialIcons {
@@ -35,6 +35,19 @@ nav .container {
     font-size: 2px !important;
 }
 
+.navBrandText {
+    font-size: 18px !important;
+}
+
+.navText {
+    font-size: 16px !important;
+    margin-top: -1px !important;
+}
+
+.logoImage {
+    display: inline-block!important;
+}
+
 @media (max-width: 1350px) and (min-width: 1251px) {
     .navBrandText {
         font-size: 18px !important;
@@ -42,6 +55,7 @@ nav .container {
 
     .navText {
         font-size: 16px !important;
+        margin-top: 2px !important;
     }
 }
 
@@ -117,3 +131,13 @@ nav .container {
         margin-left: 8% !important;
     }
   }
+
+@media (max-width: 1350px) {
+    .logoImage {
+        display: none !important;
+    }
+
+    .navBrandText {
+        margin-left: 0% !important;
+    }
+}
