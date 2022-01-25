@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { FaDiscord, FaTwitter } from 'react-icons/fa';
+import { FaDiscord, FaTwitter, FaTelegram } from 'react-icons/fa';
 
 import styles from '../styles/Navigation.module.css';
 
@@ -91,19 +91,24 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                             </Typography>
                         </Nav.Link>
                         <div className={styles.changeThemeDiv}>
-                            {useDarkTheme ? <DarkModeIcon className={styles.darkModeIcon} fontSize="large" /> : <LightModeIcon className={styles.lightModeIcon} fontSize="large" />}
+                            {useDarkTheme ? <DarkModeIcon className={clsx(styles.darkModeIcon, styles.iconSizeTheme)} /> : <LightModeIcon className={styles.lightModeIcon} fontSize="large" />}
                             <Switch checked={useDarkTheme} color="primary" onChange={e => setUseDarkTheme(e.target.checked)} />
                         </div>
-                        <IconContext.Provider value={{ size:"1.7rem", color: useDarkTheme ? "#1649ff" : "#70c1ff" }} className={styles.socialIcons}>
+                        <IconContext.Provider value={{ color: useDarkTheme ? "#1649ff" : "#70c1ff" }} className={styles.socialIcons}>
                             <div className={styles.socialIcons}>
                                 <div className={styles.socialIcon}>
                                     <a href="https://discord.gg/ahHu45hEvv" target="_blank" rel="noreferrer">
-                                        <FaDiscord />
+                                        <FaDiscord className={styles.iconSize} />
                                     </a>
                                 </div>
-                                <div className={clsx(styles.socialIcon, styles.socialIconLast)}>
+                                <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
                                     <a href="https://twitter.com/chainestatedao" target="_blank" rel="noreferrer">
-                                        <FaTwitter />
+                                        <FaTwitter className={styles.iconSize} />
+                                    </a>
+                                </div>
+                                <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
+                                    <a href="https://t.me/chainestatedao" target="_blank" rel="noreferrer">
+                                        <FaTelegram className={styles.iconSize} />
                                     </a>
                                 </div>
                             </div>

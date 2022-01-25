@@ -27,6 +27,14 @@ nav .container {
     align-items: center !important;
 }
 
+.iconSize {
+    font-size: 1.75rem !important;
+}
+
+.iconSizeTheme {
+    font-size: 2.2rem !important;
+}
+
 .socialIcon {
     margin-left: 15% !important;
 }
@@ -48,7 +56,7 @@ nav .container {
     display: inline-block!important;
 }
 
-@media (max-width: 1350px) and (min-width: 1251px) {
+@media (max-width: 1350px) and (min-width: 1270px) {
     .navBrandText {
         font-size: 18px !important;
     }
@@ -57,9 +65,17 @@ nav .container {
         font-size: 16px !important;
         margin-top: 2px !important;
     }
+
+    .iconSize {
+        font-size: 1.5rem !important;
+    }
+    
+    .iconSizeTheme {
+        font-size: 2rem !important;
+    }
 }
 
-@media (max-width: 1250px) and (min-width: 1150px) {
+@media (max-width: 1270px) and (min-width: 1150px) {
     .navBrandText {
         font-size: 16px !important;
     }
@@ -67,6 +83,14 @@ nav .container {
     .navText {
         margin-top: 5px !important;
         font-size: 14px !important;
+    }
+
+    .iconSize {
+        font-size: 1.25rem !important;
+    }
+    
+    .iconSizeTheme {
+        font-size: 1.75rem !important;
     }
 }
 
@@ -79,6 +103,18 @@ nav .container {
         font-size: 12px !important;
         margin-top: 5px !important;
     }
+
+    .iconSize {
+        font-size: 1.15rem !important;
+    }
+    
+    .iconSizeTheme {
+        font-size: 1.65rem !important;
+    }
+
+    .themeSwitch {
+        size: 10rem !important;
+    }
 }
 
 @media (max-width: 1070px) and (min-width: 992px) {
@@ -89,6 +125,14 @@ nav .container {
     .navText {
         font-size: 11px !important;
         margin-top: 8px !important;
+    }
+
+    .iconSize {
+        font-size: 1.15rem !important;
+    }
+    
+    .iconSizeTheme {
+        font-size: 1.65rem !important;
     }
 }
 
@@ -118,7 +162,7 @@ nav .container {
     }
   }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .socialIcons {
         display: flex !important;
         align-items: center !important;
@@ -127,7 +171,7 @@ nav .container {
         margin-top: 5% !important;
         margin-left: 1% !important;
     }
-    .socialIconLast {
+    .socialIconSpacing {
         margin-left: 8% !important;
     }
   }
