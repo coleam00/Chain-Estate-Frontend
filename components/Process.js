@@ -67,7 +67,7 @@ export default function Process(props) {
             How Do I Become a Part of Chain Estate DAO?
           </Typography>
           <Typography variant="h6" id="processHeader2" className="mt-3" ref={processHeaderRef2}>
-            The below steps can be performed once the Chain Estate Pre-Sale (Starting February 22nd) is Complete
+            The below steps can be performed once the Chain Estate DAO Pre-Sale (Starting February 22nd) is Complete
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGrid}>
