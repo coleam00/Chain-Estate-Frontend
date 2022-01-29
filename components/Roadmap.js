@@ -58,6 +58,10 @@ export default function Roadmap(props) {
               </Typography>
               <br/>
               <Typography variant="p">
+                <ArrowForwardIcon /> Start the Audit Process by Certik
+              </Typography>
+              <br/>
+              <Typography variant="p">
                 <ArrowForwardIcon /> Developer Liquidity Lock Up
               </Typography>
               <br/>
@@ -80,10 +84,6 @@ export default function Roadmap(props) {
               icon={<ArrowDownwardIcon />}
               
             >
-              <Typography variant="p">
-                <ArrowForwardIcon /> Start the Audit Process by Certik
-              </Typography>
-              <br/>
               <Typography variant="p">
                 <ArrowForwardIcon /> Purchase First Properties
               </Typography>
