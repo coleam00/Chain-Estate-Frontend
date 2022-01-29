@@ -20,6 +20,7 @@ export default function Process(props) {
   gsap.registerPlugin(ScrollTrigger);
 
   const processHeaderRef = useRef();
+  const processHeaderRef2 = useRef();
   const pBox1Ref = useRef();
   const pBox2Ref = useRef();
   const pBox3Ref = useRef();
@@ -40,6 +41,7 @@ export default function Process(props) {
   // Loads animations for elements of the page.
   useEffect(() => {
     gsap.from(processHeaderRef.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processHeader", start: "bottom bottom" } });
+    gsap.from(processHeaderRef2.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processHeader2", start: "bottom bottom" } });
     gsap.from(pBox1Ref.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processBox1", start: "bottom bottom" } });
     gsap.from(pBox2Ref.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processBox2", start: "bottom bottom" } });
     gsap.from(pBox3Ref.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processBox3", start: "bottom bottom" } });
@@ -63,6 +65,9 @@ export default function Process(props) {
         <Grid item xs={12} className={styles.processHeader}>
           <Typography variant="h4" id="processHeader" ref={processHeaderRef}>
             How Do I Become a Part of Chain Estate DAO?
+          </Typography>
+          <Typography variant="h6" id="processHeader2" className="mt-3" ref={processHeaderRef2}>
+            The below steps can be performed once the Chain Estate Pre-Sale (Starting February 22nd) is Complete
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGrid}>
