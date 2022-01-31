@@ -149,7 +149,7 @@ export default function Roadmap(props) {
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon /> Apply to be Listed on Centralied Exchanges
+                <ArrowForwardIcon /> Apply to be Listed on Centralized Exchanges
               </Typography>
               <br/>
               <Typography variant="p" className={styles.lastTimelineElement}>

@@ -21,7 +21,8 @@ export default function preSale(props) {
             <Grid item xs={8} className={styles.launchText}>
                 <Typography variant="h6">
                     When Chain Estate DAO officially launches in Q1 of 2022, check back
-                    here to get in on the initial coin offering!
+                    here to get in on the initial coin offering! The pre-sale will begin
+                    on February 22nd along with the launch of the CHES token.
                 </Typography>
             </Grid>
         </Grid>
