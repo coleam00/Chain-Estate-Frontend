@@ -1,0 +1,89 @@
+.mainGrid {
+    margin-top: 5% !important;
+    margin-bottom: 1% !important;
+    min-height: 100vh !important;
+}
+
+.header {
+    text-align: center !important;
+    margin-bottom: 1% !important;
+}
+
+.darkHeader {
+    border-bottom: 5px solid var(--dark-theme-primary-color);
+}
+
+.lightHeader {
+    border-bottom: 5px solid var(--light-theme-primary-color);
+}
+
+.headerText {
+    margin-top: 5% !important;
+    text-align: center !important;
+}
+
+.bioText {
+    text-align: center !important;
+}
+
+.launchText {
+    text-align: center !important;
+    margin-top: -20% !important;
+}
+
+.iconDiv {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.linkedInIcon {
+    color: #0e76a8 !important;
+    font-size: 3rem !important;
+}
+
+@media (max-width: 1000px) {
+    .teamGrid {
+        max-width: 55% !important;
+        flex: 55% !important;
+    }
+
+    .firstTeammate {
+        margin-top: 10% !important;
+    }
+
+    .lastTeammate {
+        margin-bottom: 10% !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .spacingGrid {
+        max-width: 25% !important;
+        flex: 25% !important;
+    }
+
+    .headerGrid {
+        max-width: 50% !important;
+        flex: 50% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .spacingGrid {
+        max-width: 15% !important;
+        flex: 15% !important;
+    }
+
+    .headerGrid {
+        max-width: 70% !important;
+        flex: 70% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        margin-top: 8% !important;
+    }
+}
