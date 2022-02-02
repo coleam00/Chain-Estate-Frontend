@@ -35,6 +35,12 @@ export default function Intro(props) {
             used to purchase real estate that members vote on. 100% of the cash flow from these properties are then
             distributed to NFT holders of the real estate who are also partial owners of the properties.
         </Typography>
+        <div className="mt-4">
+          <Button href="/team" target="_blank" rel="noreferrer" size="small" variant="contained" color="primary" 
+            className={props.useDarkTheme ? styles.teamBtnDark : styles.teamBtnLight}>
+            Meet the Team!
+          </Button>
+        </div>
         </Grid>
         <Grid item xs={6} ref={housePicRef} className={styles.housePicContainer}>
         <Image src={housePic} className={topImageLoaded ? (props.useDarkTheme ? styles.housePicDark : styles.housePicLight) : ""} layout="responsive" />

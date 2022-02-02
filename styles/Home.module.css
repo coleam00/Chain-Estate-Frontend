@@ -190,6 +190,14 @@
   color: white !important;
 }
 
+.teamBtnDark:hover {
+  color: white !important;
+}
+
+.teamBtnLight:hover {
+  color: white !important;
+}
+
 .verticalTimelineDiv {
   text-align: left !important;
 }
