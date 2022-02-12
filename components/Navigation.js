@@ -80,9 +80,9 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                 White Paper
                             </Typography>
                         </Nav.Link>
-                        <Nav.Link href="/presale" className={styles.navPadding}>
+                        <Nav.Link href="/ido" className={styles.navPadding}>
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
-                                Pre-Sale
+                                IDO
                             </Typography>
                         </Nav.Link>
                         <Nav.Link href="/vote" className={styles.navPadding}>

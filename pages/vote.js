@@ -22,7 +22,7 @@ export default function preSale(props) {
                 <Typography variant="h6">
                     Here is where Chain Estate DAO investors will be able to vote on real estate investments for the project.
                     The more CHES tokens an investor has, the more their vote will impact which real estate investments are pursued.
-                    This voting page will be released along with the voting smart contract after the pre-sale has begun.
+                    This voting page will be released along with the voting smart contract after the initial dex offering.
                 </Typography>
             </Grid>
         </Grid>

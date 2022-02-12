@@ -24,7 +24,60 @@
 
 .launchText {
     text-align: center !important;
-    margin-top: -20% !important;
+    margin-top: -15% !important;
+}
+
+.connectBtnDark:hover {
+    color: white !important;
+}
+  
+.connectBtnLight:hover {
+    color: white !important;
+}
+
+.connectGrid {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.customCardDark {
+    background-color: #1d263b !important;
+}
+
+.customCardLight {
+    background-color: #eaeef3 !important;
+}
+
+.btnDark:hover {
+    color: black !important;
+}
+  
+.btnLight:hover {
+    color: white !important;
+}
+
+.customCard {
+    border-radius: 5% !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.cardContentDiv {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.connectBtn {
+    margin-top: 10% !important;
+}
+
+.cardBtn {
+    margin: auto !important;
+}
+
+.CHESPurchaseInput {
+    margin-top: 8% !important;
+    margin-bottom: 5% !important;
 }
 
 @media (max-width: 900px) {

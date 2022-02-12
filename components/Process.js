@@ -67,7 +67,7 @@ export default function Process(props) {
             How Do I Become a Part of Chain Estate DAO?
           </Typography>
           <Typography variant="h6" id="processHeader2" className="mt-3" ref={processHeaderRef2}>
-            The below steps can be performed once the Chain Estate DAO Pre-Sale (Starting February 22nd) is Complete
+            The below steps can be performed once Chain Estate DAO launches on February 22nd of this year.
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGrid}>
@@ -233,7 +233,7 @@ export default function Process(props) {
           </Button>
         </Grid>
         <Grid item xs={2} className={clsx(styles.largeBtnGrid, "mt-4")}>
-          <Button href="/presale" target="_blank" rel="noreferrer" id="getStartedBtn" ref={getStartedBtnRef} variant="contained" color="secondary" 
+          <Button href="/ido" target="_blank" rel="noreferrer" id="getStartedBtn" ref={getStartedBtnRef} variant="contained" color="secondary" 
             className={clsx(styles.largeBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
             Get Started
           </Button>
@@ -246,10 +246,13 @@ export default function Process(props) {
         <Grid item xs={8} className={styles.daoTextGrid}>
           <Typography variant="p" ref={daoTextRef} id="daoText">
             Chain Estate DAO investors will help decide what properties the project invests in. Each time funds are raised
-            to purchase a property, a poll will be released to the community through the voting smart contract, and each
-            member can vote on what property Chain Estate DAO should purchase. Our team will be analyzing properties that have 
+            to purchase a property, a poll will be released to the community through the polling smart contract, and each
+            member can vote on what property Chain Estate DAO should purchase. Everyone's vote has a weight directly correlated
+            to how many CHES tokens they hold. Our team will be analyzing properties that have 
             great potential and give suggestions to the community based on expert analysis, but ultimately it is up to 
-            the community for which properties Chain Estate will acquire.
+            the community for which properties Chain Estate DAO will acquire. In the future, there will also be another
+            governance smart contract that will replace the polling contract that will allow investors to propose and vote
+            on properties to aquire so a decision can be made end to end without the Chain Estate DAO team.
           </Typography>
         </Grid>
       </Grid>

@@ -54,7 +54,7 @@ export default function Roadmap(props) {
               </Typography>
               <br/>
               <Typography variant="p">
-                <ArrowForwardIcon />  Pre-Sale Offering
+                <ArrowForwardIcon />  Initial Dex Offering
               </Typography>
               <br/>
               <Typography variant="p">

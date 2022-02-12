@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import { ThemeProvider, createTheme, Paper } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { ThemeProvider, createTheme, Paper } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { DAppProvider, Rinkeby } from '@usedapp/core';
 
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -71,18 +72,24 @@ function MyApp({ Component, pageProps }) {
     }
   }, [useDarkTheme]);
 
+  const config = {
+    networks: [Rinkeby]
+  }
+
   return (
     <ThemeProvider theme={useDarkTheme ? darkTheme : lightTheme}>
-      <Head>
-        <title>Chain Estate</title>
-        <meta name="description" content="Chain Estate" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Paper className="mainPaper">
-        <Navigation useDarkTheme={useDarkTheme} setUseDarkTheme={setUseDarkTheme} />
-        <Component {...pageProps} useDarkTheme={useDarkTheme} />
-        <Footer />
-      </Paper>
+      <DAppProvider config={config}>
+        <Head>
+          <title>Chain Estate</title>
+          <meta name="description" content="Chain Estate" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Paper className="mainPaper">
+          <Navigation useDarkTheme={useDarkTheme} setUseDarkTheme={setUseDarkTheme} />
+          <Component {...pageProps} useDarkTheme={useDarkTheme} />
+          <Footer />
+        </Paper>
+      </DAppProvider>
     </ThemeProvider>
   )
 }

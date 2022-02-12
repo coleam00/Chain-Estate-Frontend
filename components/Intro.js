@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Grid, Button, Typography, Card, CardContent, CardActions, Avatar } from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect, useState, useRef } from 'react';

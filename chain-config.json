@@ -1,0 +1,15 @@
+{
+    "chainIds": {
+        "4": "rinkeby",
+        "1337": "dev"
+    },
+    "CHESTokenAddresses": {
+        "rinkeby": "0x7F6B72172C8f00220BB7443c84093C50922fE396"
+    },
+    "CHESPreSaleAddresses": {
+        "rinkeby": "0xa1c107ff414442d2b335a7f4d9e5ecf707365487"
+    },
+    "CHESAirDropAddresses": {
+        "rinkeby": "0x2a13afe8e954727a7f2f01c375b195eba4eab59c"
+    }
+}
