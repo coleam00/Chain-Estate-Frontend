@@ -247,7 +247,7 @@ export default function Process(props) {
           <Typography variant="p" ref={daoTextRef} id="daoText">
             Chain Estate DAO investors will help decide what properties the project invests in. Each time funds are raised
             to purchase a property, a poll will be released to the community through the polling smart contract, and each
-            member can vote on what property Chain Estate DAO should purchase. Everyone's vote has a weight directly correlated
+            member can vote on what property Chain Estate DAO should purchase. Everyone&apos;s vote has a weight directly correlated
             to how many CHES tokens they hold. Our team will be analyzing properties that have 
             great potential and give suggestions to the community based on expert analysis, but ultimately it is up to 
             the community for which properties Chain Estate DAO will acquire. In the future, there will also be another

@@ -9,7 +9,7 @@ import styles from '../styles/presale.module.css';
 import CHESPreSale from "../contracts/ChainEstatePreSale.json";
 import chainConfig from "../chain-config.json";
 
-export default function preSale(props) {
+export default function PreSale(props) {
     const { account, activateBrowserWallet, deactivate, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
     const tokenAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;
