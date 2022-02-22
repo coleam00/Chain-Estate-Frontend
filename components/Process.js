@@ -35,6 +35,10 @@ export default function Process(props) {
   const learnMoreBtnRef = useRef();
   const getStartedBtnRef = useRef();
 
+  const CHESInfo1 = useRef();
+  const CHESInfo2 = useRef();
+  const CHESInfo3 = useRef();
+
   const daoHeaderRef = useRef();
   const daoTextRef = useRef();
 
@@ -56,6 +60,10 @@ export default function Process(props) {
     gsap.from(learnMoreBtnRef.current, { opacity: 0, y: 200, duration: 1, scrollTrigger: {trigger: "#learnMoreBtn", start: "top bottom" } });
     gsap.from(getStartedBtnRef.current, { opacity: 0, y: 200, duration: 1, scrollTrigger: { trigger: "#getStartedBtn", start: "top bottom" } });
 
+    gsap.from(CHESInfo1.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo1", start: "bottom bottom" } });
+    gsap.from(CHESInfo2.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo2", start: "bottom bottom" } });
+    gsap.from(CHESInfo3.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo3", start: "bottom bottom" } });
+
     gsap.from(daoHeaderRef.current, { opacity: 0, duration: 2, scrollTrigger: {trigger: "#daoHeader", start: "bottom bottom" } });
     gsap.from(daoTextRef.current, { opacity: 0, duration: 1, scrollTrigger: { trigger: "#daoText", start: "bottom bottom" } });
   }, [])
@@ -65,9 +73,6 @@ export default function Process(props) {
         <Grid item xs={12} className={styles.processHeader}>
           <Typography variant="h4" id="processHeader" ref={processHeaderRef}>
             How Do I Become a Part of Chain Estate DAO?
-          </Typography>
-          <Typography variant="h6" id="processHeader2" className="mt-3" ref={processHeaderRef2}>
-            The below steps can be performed once Chain Estate DAO launches on February 22nd of this year.
           </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGrid}>
@@ -140,9 +145,9 @@ export default function Process(props) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button href="https://pancakeswap.finance/" target="_blank" rel="noreferrer" size="small" variant="contained" color="secondary"
+                <Button href="https://pancakeswap.finance/swap?outputCurrency=0x31832D10f68D3112d847Bd924331F3d182d268C4" target="_blank" rel="noreferrer" size="small" variant="contained" color="secondary"
                   className={clsx(styles.cardBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
-                  Visit PancakeSwap
+                  Swap for CHES on PancakeSwap
                 </Button>
               </CardActions>
             </div>
@@ -233,10 +238,23 @@ export default function Process(props) {
           </Button>
         </Grid>
         <Grid item xs={2} className={clsx(styles.largeBtnGrid, "mt-4")}>
-          <Button href="/ido" target="_blank" rel="noreferrer" id="getStartedBtn" ref={getStartedBtnRef} variant="contained" color="secondary" 
+          <Button href="https://pancakeswap.finance/swap?outputCurrency=0x31832D10f68D3112d847Bd924331F3d182d268C4" target="_blank" rel="noreferrer" id="getStartedBtn" ref={getStartedBtnRef} variant="contained" color="secondary" 
             className={clsx(styles.largeBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
             Get Started
           </Button>
+        </Grid>
+        <Grid item xs={12} className={styles.daoHeaderGrid}>
+          <Typography variant="h5" ref={CHESInfo1} id="CHESInfo1">
+            CHES token contract address: 0x31832D10f68D3112d847Bd924331F3d182d268C4
+          </Typography>
+          <br/>
+          <Typography variant="h6" ref={CHESInfo2} id="CHESInfo2">
+            Txn hash for locking initial liquidity: 0x3871a2498703aa47f0811e62293f606b413429346fd6c15e1e75de4eae59ea39
+          </Typography>
+          <br/>
+          <Typography variant="h6" ref={CHESInfo3} id="CHESInfo3">
+            Txn hash for locking developer funds: 0x9a313646d944086d7d037cba78c30918290781352d88b7c05b22b1650e47e907
+          </Typography>
         </Grid>
         <Grid item xs={12} className={styles.daoHeaderGrid}>
           <Typography variant="h4" ref={daoHeaderRef} id="daoHeader">

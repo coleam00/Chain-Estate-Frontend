@@ -17,14 +17,33 @@
     border-bottom: 5px solid var(--light-theme-primary-color);
 }
 
-.comingSoonText {
-    margin-top: -10% !important;
+.btnDark:hover {
+    color: black !important;
+  }
+  
+  .btnLight:hover {
+    color: white !important;
+  }
+  
+
+.haveLaunchedText {
+    margin-top: -7% !important;
     text-align: center !important;
 }
 
 .launchText {
     text-align: center !important;
-    margin-top: -15% !important;
+    margin-top: -10% !important;
+}
+
+.swapBtnGrid {
+    margin-top: -5% !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.swapBtn {
+    margin: auto !important;
 }
 
 .connectBtnDark:hover {

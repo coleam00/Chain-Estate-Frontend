@@ -91,18 +91,25 @@ export default function PreSale(props) {
                 </Typography>
             </Grid>
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
-            <Grid item xs={8} className={styles.comingSoonText}>
+            <Grid item xs={8} className={styles.haveLaunchedText}>
                 <Typography variant="h5">
-                    Coming soon...
+                    Chain Estate DAO has officially launched!
                 </Typography>
             </Grid>
             <Grid item xs={8} className={styles.launchText}>
                 <Typography variant="h6">
-                    When Chain Estate DAO officially launches in Q1 of 2022, you can visit PankcakeSwap
-                    to participate in the Initial Dex Offering (IDO)! The IDO will begin
-                    on February 22nd of 2022 along with the launch of the CHES token. This is when you will
-                    first be able to purchase the token for the project.
+                    You can visit PancakeSwap, the largest decentralized exchange on the Binance Smart Chain, to
+                    swap BNB for the Chain Estate DAO token (CHES). The token price will likely be extremely volatile!  
+                    You will need to set your slippage on PancakeSwap to at least 6% to account for the tax, but likely higher (we recommend at least 10%-15%).
+                    If you get an error message, that could mean one of two things:  You are trying to buy more than 6,000,000 tokens, or your slippage is not high enough.
+                    We are limiting each investor initially to 2% of the total CHES tokens in the PancakeSwap liquidity, which is that 6,000,000 number.
                 </Typography>
+            </Grid>
+            <Grid item xs={8} className={styles.swapBtnGrid}>
+                <Button href="https://pancakeswap.finance/swap?outputCurrency=0x31832D10f68D3112d847Bd924331F3d182d268C4" target="_blank" rel="noreferrer" variant="contained" 
+                className={clsx(styles.swapBtn, props.useDarkTheme ? styles.btnLight : styles.btnDark)}>
+                    Swap for CHES on PancakeSwap
+                </Button>
             </Grid>
 
             {/*
