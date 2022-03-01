@@ -112,6 +112,20 @@
     }
 }
 
+@media (max-width: 725px) {
+    .haveLaunchedText {
+        margin-top: 5% !important;
+    }
+    
+    .launchText {
+        margin-top: 5% !important;
+    }
+    
+    .swapBtnGrid {
+        margin-top: 5% !important;
+    }
+}
+
 @media (max-width: 450px) {
     .spacingGrid {
         max-width: 15% !important;
