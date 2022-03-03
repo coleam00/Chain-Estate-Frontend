@@ -24,6 +24,10 @@
   .btnLight:hover {
     color: white !important;
   }
+
+.comingSoonText {
+    text-align: center !important;
+}
   
 
 .haveLaunchedText {
