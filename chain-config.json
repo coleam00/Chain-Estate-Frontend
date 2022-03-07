@@ -4,12 +4,15 @@
         "1337": "dev"
     },
     "CHESTokenAddresses": {
-        "rinkeby": "0x7F6B72172C8f00220BB7443c84093C50922fE396"
-    },
-    "CHESPreSaleAddresses": {
-        "rinkeby": "0xa1c107ff414442d2b335a7f4d9e5ecf707365487"
+        "rinkeby": "0xd2cf313CdAD8F99bCdEd14120d679c15218b787A"
     },
     "CHESAirDropAddresses": {
-        "rinkeby": "0x2a13afe8e954727a7f2f01c375b195eba4eab59c"
+        "rinkeby": "0xf64c5BCfA450C1eeF223fF2B424F0Bb74153d75D"
+    },
+    "CHESNFTAddresses": {
+        "rinkeby": "0x2e073804d7a09DA862230812806783Cfb0A5b1AC"
+    },
+    "CHESNFTMarketplaceAddresses": {
+        "rinkeby": "0x058942C7De931125f44b0Ed3BD249734ec725196"
     }
 }

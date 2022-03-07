@@ -102,6 +102,55 @@
     margin-bottom: 5% !important;
 }
 
+.fileInput {
+    display: none !important;
+}
+
+.NFTGrid {
+    text-align: center !important;
+}
+
+.NFTImage {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.listNFTBtn {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 5% !important;
+}
+
+.NFTText {
+    background-color: #1d263b;
+}
+
+.NFTTextDark {
+    background-color: #1d263b !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+}
+
+.NFTTextLight {
+    background-color: #eaeef3 !important;
+}
+
+.modalBody {
+    text-align: center !important;
+}
+
+.modalDark {
+    background-color: #1d263b !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+}
+
+.modalLight {
+    background-color: #eaeef3 !important;
+}
+
+.darkText {
+    color: white !important;
+}
+
 @media (max-width: 900px) {
     .spacingGrid {
         max-width: 25% !important;

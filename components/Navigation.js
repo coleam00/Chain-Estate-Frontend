@@ -1,6 +1,6 @@
-import { Grid, Typography, Switch } from '@mui/material';
+import { Grid, Typography, Switch, Button } from '@mui/material';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { gsap } from "gsap";
 import { IconContext } from "react-icons";
@@ -8,15 +8,18 @@ import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { FaDiscord, FaTwitter, FaTelegram } from 'react-icons/fa';
+import { useEthers } from "@usedapp/core";
 
 import styles from '../styles/Navigation.module.css';
-
-import houseIconDarkTheme from '../public/houseIconDarkTheme.png';
 
 export default function Navigation({useDarkTheme, setUseDarkTheme}) {
     gsap.registerPlugin(ScrollToPlugin);
 
+    const { account, activateBrowserWallet, deactivate, chainId } = useEthers();
     const sections = ["about", "tokenomics", "roadmap"];
+    const walletSections = ["marketplace"];
+
+    const [isWalletPage, setIsWalletPage] = useState(false);
 
     const moveToSection = (section) => {
         if (window.location.pathname == "/") {
@@ -36,7 +39,15 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                 gsap.to(window, {duration: 0.1, scrollTo:`#${urlSection}`});
             }
         }
+
+        for (let i = 0; i < walletSections.length; i++) {
+            if (currUrl.includes(walletSections[i])) {
+                setIsWalletPage(true);
+            }
+        }
     }, []);
+
+    const isConnected = account !== undefined;
 
     return (
         <Grid container justifyContent="center" className={useDarkTheme ? styles.navGridDark : styles.navGridLight}>
@@ -94,25 +105,48 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                             {useDarkTheme ? <DarkModeIcon className={clsx(styles.darkModeIcon, styles.iconSizeTheme)} /> : <LightModeIcon className={styles.lightModeIcon} fontSize="large" />}
                             <Switch checked={useDarkTheme} color="primary" onChange={e => setUseDarkTheme(e.target.checked)} />
                         </div>
-                        <IconContext.Provider value={{ color: useDarkTheme ? "#1649ff" : "#70c1ff" }} className={styles.socialIcons}>
-                            <div className={styles.socialIcons}>
-                                <div className={styles.socialIcon}>
-                                    <a href="https://discord.gg/ahHu45hEvv" target="_blank" rel="noreferrer">
-                                        <FaDiscord className={styles.iconSize} />
-                                    </a>
+                        {
+                            !isWalletPage && (
+                                <IconContext.Provider value={{ color: useDarkTheme ? "#1649ff" : "#70c1ff" }} className={styles.socialIcons}>
+                                    <div className={styles.socialIcons}>
+                                        <div className={styles.socialIcon}>
+                                            <a href="https://discord.gg/ahHu45hEvv" target="_blank" rel="noreferrer">
+                                                <FaDiscord className={styles.iconSize} />
+                                            </a>
+                                        </div>
+                                        <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
+                                            <a href="https://twitter.com/chainestatedao" target="_blank" rel="noreferrer">
+                                                <FaTwitter className={styles.iconSize} />
+                                            </a>
+                                        </div>
+                                        <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
+                                            <a href="https://t.me/chainestatedao" target="_blank" rel="noreferrer">
+                                                <FaTelegram className={styles.iconSize} />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </IconContext.Provider>
+                            )
+                        }
+
+                        {
+                            isWalletPage && (
+                                <div className={styles.connectBtnDiv}>
+                                    {isConnected ? (
+                                        <Button size="small" variant="contained" color="primary" onClick={deactivate}
+                                            className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
+                                            Disconnect
+                                        </Button>
+                                    ) : (
+                                        <Button size="small" variant="contained" color="primary" onClick={() => activateBrowserWallet()}
+                                            className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
+                                            Connect
+                                        </Button>
+                                    )
+                                    }
                                 </div>
-                                <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
-                                    <a href="https://twitter.com/chainestatedao" target="_blank" rel="noreferrer">
-                                        <FaTwitter className={styles.iconSize} />
-                                    </a>
-                                </div>
-                                <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
-                                    <a href="https://t.me/chainestatedao" target="_blank" rel="noreferrer">
-                                        <FaTelegram className={styles.iconSize} />
-                                    </a>
-                                </div>
-                            </div>
-                        </IconContext.Provider>
+                            )
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
