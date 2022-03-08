@@ -88,6 +88,9 @@ export default function TransactionFees(props) {
                 <Typography variant="h5" component="div">
                 60% of the Fees
                 </Typography>
+                <Typography variant="h5" component="div">
+                (3% of each Transaction)
+                </Typography>
                 <Typography variant="p" component="div" className="mt-4">
                 Are sent to the pool used to buy real estate. Properties will be purchased one at a time
                 each time enough tokens are pooled.
@@ -120,6 +123,9 @@ export default function TransactionFees(props) {
                 <Typography variant="h5" component="div">
                 20% of the Fees
                 </Typography>
+                <Typography variant="h5" component="div">
+                (1% of each Transaction)
+                </Typography>
                 <Typography variant="p" component="div" className="mt-4">
                 Are sent to the developer wallet. The developers of Chain Estate DAO make no profits from the
                 real estate itself, so this is how the project supports them.
@@ -151,6 +157,9 @@ export default function TransactionFees(props) {
                     </Grid>
                     <Typography variant="h5" component="div">
                     20% of the Fees
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                    (1% of each Transaction)
                     </Typography>
                     <Typography variant="p" component="div" className="mt-4">
                     Are used for marketing - purchasing advertising on Twitter, YouTube, Google, etc.
