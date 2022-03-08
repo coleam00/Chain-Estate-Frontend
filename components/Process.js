@@ -20,7 +20,6 @@ export default function Process(props) {
   gsap.registerPlugin(ScrollTrigger);
 
   const processHeaderRef = useRef();
-  const processHeaderRef2 = useRef();
   const pBox1Ref = useRef();
   const pBox2Ref = useRef();
   const pBox3Ref = useRef();
@@ -38,6 +37,9 @@ export default function Process(props) {
   const CHESInfo1 = useRef();
   const CHESInfo2 = useRef();
   const CHESInfo3 = useRef();
+  const CHESInfo4 = useRef();
+  const CHESInfo5 = useRef();
+  const CHESInfo6 = useRef();
 
   const daoHeaderRef = useRef();
   const daoTextRef = useRef();
@@ -45,7 +47,6 @@ export default function Process(props) {
   // Loads animations for elements of the page.
   useEffect(() => {
     gsap.from(processHeaderRef.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processHeader", start: "bottom bottom" } });
-    gsap.from(processHeaderRef2.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processHeader2", start: "bottom bottom" } });
     gsap.from(pBox1Ref.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processBox1", start: "bottom bottom" } });
     gsap.from(pBox2Ref.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processBox2", start: "bottom bottom" } });
     gsap.from(pBox3Ref.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#processBox3", start: "bottom bottom" } });
@@ -63,6 +64,9 @@ export default function Process(props) {
     gsap.from(CHESInfo1.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo1", start: "bottom bottom" } });
     gsap.from(CHESInfo2.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo2", start: "bottom bottom" } });
     gsap.from(CHESInfo3.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo3", start: "bottom bottom" } });
+    gsap.from(CHESInfo4.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo4", start: "bottom bottom" } });
+    gsap.from(CHESInfo5.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo5", start: "bottom bottom" } });
+    gsap.from(CHESInfo6.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo6", start: "bottom bottom" } });
 
     gsap.from(daoHeaderRef.current, { opacity: 0, duration: 2, scrollTrigger: {trigger: "#daoHeader", start: "bottom bottom" } });
     gsap.from(daoTextRef.current, { opacity: 0, duration: 1, scrollTrigger: { trigger: "#daoText", start: "bottom bottom" } });
@@ -245,15 +249,24 @@ export default function Process(props) {
         </Grid>
         <Grid item xs={12} className={styles.daoHeaderGrid}>
           <Typography variant="h5" ref={CHESInfo1} id="CHESInfo1">
-            CHES token contract address: 0x31832D10f68D3112d847Bd924331F3d182d268C4
+            CHES token contract address:
           </Typography>
-          <br/>
-          <Typography variant="h6" ref={CHESInfo2} id="CHESInfo2">
-            Txn hash for locking initial liquidity: 0x3871a2498703aa47f0811e62293f606b413429346fd6c15e1e75de4eae59ea39
+          <Typography variant="h5" ref={CHESInfo2} id="CHESInfo2" className={styles.addressText}>
+            0x31832D10f68D3112d847Bd924331F3d182d268C4
           </Typography>
           <br/>
           <Typography variant="h6" ref={CHESInfo3} id="CHESInfo3">
-            Txn hash for locking developer funds: 0x9a313646d944086d7d037cba78c30918290781352d88b7c05b22b1650e47e907
+            Txn hash for locking initial liquidity:
+          </Typography>
+          <Typography variant="h6" ref={CHESInfo4} id="CHESInfo4" className={styles.addressText2}>
+            0x3871a2498703aa47f0811e62293f606b413429346fd6c15e1e75de4eae59ea39
+          </Typography>
+          <br/>
+          <Typography variant="h6" ref={CHESInfo5} id="CHESInfo5">
+            Txn hash for locking developer funds:
+          </Typography>
+          <Typography variant="h6" ref={CHESInfo6} id="CHESInfo6" className={styles.addressText2}>
+            0x9a313646d944086d7d037cba78c30918290781352d88b7c05b22b1650e47e907
           </Typography>
         </Grid>
         <Grid item xs={12} className={styles.daoHeaderGrid}>

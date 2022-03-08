@@ -18,6 +18,7 @@ export default function TransactionFees(props) {
     gsap.registerPlugin(ScrollTrigger);
 
     const feeHeaderRef = useRef();
+    const feeHeaderRef2 = useRef();
     const feeBox1Ref = useRef();
     const feeBox2Ref = useRef();
     const feeBox3Ref = useRef();
@@ -35,6 +36,7 @@ export default function TransactionFees(props) {
   // Loads animations for elements of the page.
   useEffect(() => {    
     gsap.from(feeHeaderRef.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#feeHeader", start: "bottom bottom" } });
+    gsap.from(feeHeaderRef2.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#feeHeader2", start: "bottom bottom" } });
     gsap.from(feeBox1Ref.current, { x: function(index, target, targets) {
       return target.getBoundingClientRect().right;
     }, opacity: 0, duration: function (index, target, targets) {
@@ -56,7 +58,10 @@ export default function TransactionFees(props) {
       <Grid container id="tokenomics" justifyContent="center" alignItems="center" spacing={4} className={styles.transactionFeesGrid}>
         <Grid item xs={12}>
         <Typography variant="h4" id="feeHeader" ref={feeHeaderRef} className={styles.feeHeader}>
-            The Chain Estate DAO Transaction Fees are Split 3 Ways
+            There is a 5% Transaction Fee When You Buy CHES
+        </Typography>
+        <Typography variant="h5" id="feeHeader2" ref={feeHeaderRef2} className={styles.feeHeader}>
+            These Transaction Fees are Split 3 Ways
         </Typography>
         </Grid>
         <Grid item xs={3} className={styles.customCardGridFee}>
@@ -81,10 +86,10 @@ export default function TransactionFees(props) {
                 </Grid>
                 </Grid>
                 <Typography variant="h5" component="div">
-                3%
+                60% of the Fees
                 </Typography>
                 <Typography variant="p" component="div" className="mt-4">
-                Is sent to the pool used to buy real estate. Properties will be purchased one at a time
+                Are sent to the pool used to buy real estate. Properties will be purchased one at a time
                 each time enough tokens are pooled.
                 </Typography>
             </CardContent>
@@ -113,10 +118,10 @@ export default function TransactionFees(props) {
                 </Grid>
                 </Grid>
                 <Typography variant="h5" component="div">
-                1%
+                20% of the Fees
                 </Typography>
                 <Typography variant="p" component="div" className="mt-4">
-                Is sent to the developer wallet. The developers of Chain Estate DAO make no profits from the
+                Are sent to the developer wallet. The developers of Chain Estate DAO make no profits from the
                 real estate itself, so this is how the project supports them.
                 </Typography>
             </CardContent>
@@ -145,10 +150,10 @@ export default function TransactionFees(props) {
                     </Grid>
                     </Grid>
                     <Typography variant="h5" component="div">
-                    1%
+                    20% of the Fees
                     </Typography>
                     <Typography variant="p" component="div" className="mt-4">
-                    Is used for marketing - purchasing advertising on Twitter, YouTube, Google, etc.
+                    Are used for marketing - purchasing advertising on Twitter, YouTube, Google, etc.
                     The Chain Estate DAO developer team is committed to pushing for the growth of the project
                     on all platforms imaginable. 
                     </Typography>
