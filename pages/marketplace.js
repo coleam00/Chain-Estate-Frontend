@@ -10,17 +10,19 @@ import Web3Modal from 'web3modal';
 import { Modal } from "react-bootstrap";
 
 import styles from '../styles/marketplace.module.css';
+import CHESToken from "../contracts/ChainEstateToken.json";
 import CHESNFT from "../contracts/ChainEstateNFT.json";
 import CHESMarketplace from "../contracts/ChainEstateMarketplace.json";
 import chainConfig from "../chain-config.json";
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
+const network = "rinkeby";
 
-function useMarketplaceNFTs(
+async function useMarketItems(
     marketplaceContract
   ) {
     const { value, error } =
-      useCall(
+        useCall(
         marketplaceContract && {
             contract: marketplaceContract, // instance of called contract
             method: "fetchMarketItems", // Method to be called
@@ -43,9 +45,12 @@ export default function marketplace(props) {
 
     const tokenBalance = useTokenBalance(CHESAddress, account);
 
+    const chesABI = CHESToken.abi;
     const nftAbi = CHESNFT.abi;
     const marketplaceAbi = CHESMarketplace.abi
     
+    const chesInterface = new utils.Interface(chesABI);
+    const chesContract = new Contract(CHESAddress, chesInterface);
     const nftInterface = new utils.Interface(nftAbi);
     const nftContract = new Contract(CHESNFTAddress, nftInterface);
     const marketplaceInterface = new utils.Interface(marketplaceAbi);
@@ -60,7 +65,11 @@ export default function marketplace(props) {
     const [userNFTs, setUserNFTs] = useState([]);
     const [showListNFTModal, setShowListNFTModal] = useState(false);
     const [currNFT, setCurrNFT] = useState({});
-    const marketplaceNFTs = useMarketplaceNFTs(marketplaceContract);
+    const [NFTTransferApproved, setNFTTransferApproved] = useState(false);
+    const marketItems = useMarketItems(marketplaceContract);
+    const [marketplaceNFTs, setMarketplaceNFTs] = useState([]);
+    const [currBuyNFTId, setCurrBuyNFTId] = useState(-1);
+    const [currApprovedNFTId, setCurrApprovedNFTId] = useState(-1);
 
     const isConnected = account !== undefined;
 
@@ -69,9 +78,19 @@ export default function marketplace(props) {
             transactionName: "Mint a Chain Estate DAO NFT",
     })
 
+    const { send: approveNFTTransfer, state: approveNFTTransferState } =
+        useContractFunction(nftContract, "approve", {
+            transactionName: "Approve the CHES NFT marketplace to tranfer your CHES NFT",
+    })
+
     const { send: createMarketItem, state: createMarketItemState } =
         useContractFunction(marketplaceContract, "createMarketItem", {
             transactionName: "List a Chain Estate DAO NFT on the Marketplace",
+    })
+
+    const { send: approveCHESTransfer, state: approveCHESTransferState } =
+        useContractFunction(chesContract, "approve", {
+            transactionName: "Approve the CHES NFT marketplace to spend CHES tokens",
     })
 
     const { send: createMarketSale, state: createMarketSaleState } =
@@ -79,9 +98,37 @@ export default function marketplace(props) {
             transactionName: "Purchase a Chain Estate DAO NFT on the Marketplace",
     })
 
+    async function updateMarketplaceNFTs(marketItemsResult) {
+        console.log("Updating marketplace NFTs.");
+        let marketplaceNFTArray = [];
+
+        const web3Modal = new Web3Modal({
+            network: network,
+            cacheProvider: true,
+          })
+        const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+        const nftContractReadOnly = new ethers.Contract(CHESNFTAddress, nftAbi, provider);
+
+        for(let i = 0; i < marketItemsResult.length; i++) {
+            const currTokenId = marketItemsResult[i].tokenId;
+            const currTokenURI = await nftContractReadOnly.tokenURI(currTokenId);
+            const metaData = await axios.get(currTokenURI);
+            const price = ethers.utils.formatEther(BigInt(marketItemsResult[i].price._hex).toString(10));
+            const itemId = BigInt(marketItemsResult[i].itemId._hex).toString(10);
+            marketplaceNFTArray.push(Object.assign({}, metaData.data, {price: price, itemId: itemId}));
+        }
+
+        setMarketplaceNFTs(JSON.parse(JSON.stringify(marketplaceNFTArray))); 
+    }
+
     useEffect(() => {
-        console.log(marketplaceNFTs);
-    }, [marketplaceNFTs])
+        marketItems.then(marketItemsResult => {
+            if (marketItemsResult && marketplaceNFTs.length !== marketItemsResult.length) {
+                updateMarketplaceNFTs(marketItemsResult);
+            } 
+        });
+    }, [marketItems])
 
     async function onFileChange(e) {
         const file = e.target.files[0];
@@ -126,12 +173,29 @@ export default function marketplace(props) {
     function startNFTListing(nft) {
         setCurrNFT(nft);
         setShowListNFTModal(true);
+        setNFTTransferApproved(false);
     }
     
-    async function listNFTForSale(tokenId) {
+    async function approveNFTTransferToMarketplace(tokenId) {
         if (NFTPrice > 0.0) {
+            approveNFTTransfer(CHESMarketplaceAddress, tokenId);
+        }
+    }
+
+    useEffect(() => {
+        console.log(approveNFTTransferState);
+        if (approveNFTTransferState.status === "Success") {
+            setNFTTransferApproved(true);
+        }
+        else {
+            setCurrApprovedNFTId(-1);
+        }
+    }, [approveNFTTransferState])
+
+    async function finalizeNFTListing(tokenId) {
+        if (NFTPrice > 0.0 && NFTTransferApproved) {
             const web3Modal = new Web3Modal({
-                network: "rinkeby",
+                network: network,
                 cacheProvider: true,
               })
             const connection = await web3Modal.connect();
@@ -143,6 +207,43 @@ export default function marketplace(props) {
             createMarketItem(CHESNFTAddress, tokenId, price, {value: listingPrice});
         }
     }
+
+    useEffect(() => {
+        console.log(createMarketItemState);
+        if (createMarketItemState.status === "Success") {
+            setNFTTransferApproved(false);
+            setShowListNFTModal(false);
+            getTokenURI();
+        }
+    }, [createMarketItemState])
+
+    async function startNFTPurchase(marketItemId, NFTPrice) {
+        const price = ethers.utils.parseUnits(NFTPrice, 'ether');
+        approveCHESTransfer(CHESMarketplaceAddress, price);
+        setCurrBuyNFTId(marketItemId);
+    }
+
+    useEffect(() => {
+        console.log(approveCHESTransferState);
+        if (approveCHESTransferState.status === "Success") {
+            setCurrApprovedNFTId(currBuyNFTId);
+        }
+        else {
+            setCurrApprovedNFTId(-1);
+        }
+    }, [approveCHESTransferState])
+
+    async function finishNFTPurchase(marketItemId, itemPrice) {
+        const price = BigInt(ethers.utils.parseUnits(itemPrice, 'ether')._hex).toString(10);
+        console.log(CHESNFTAddress);
+        console.log(marketItemId);
+        console.log(price);
+        createMarketSale(CHESNFTAddress, marketItemId, price);
+    }
+
+    useEffect(() => {
+        console.log(createMarketSaleState);
+    }, [createMarketSaleState])
 
     const isNumeric = stringToTest => {
         return !isNaN(stringToTest) && !isNaN(parseFloat(stringToTest));
@@ -161,7 +262,7 @@ export default function marketplace(props) {
 
     async function getTokenURI() {
         const web3Modal = new Web3Modal({
-            network: "rinkeby",
+            network: network,
             cacheProvider: true,
           })
         const connection = await web3Modal.connect();
@@ -272,8 +373,26 @@ export default function marketplace(props) {
                 <TextField error={inputError != ""} label="Price in CHES" helperText={inputError}
                     value={NFTPrice} onChange={updateNFTPrice} className={styles.CHESPurchaseInput} />
                     <br/>
-                <Button size="small" variant="contained" color="primary" onClick={() => listNFTForSale(currNFT.tokenId)}
-                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+                {
+                    !NFTTransferApproved && (
+                        <Button size="small" variant="contained" color="primary" onClick={() => approveNFTTransferToMarketplace(currNFT.tokenId)}
+                            className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+                            Approve NFT Transfer
+                        </Button>
+                    )
+                }
+                {
+                    NFTTransferApproved && (
+                        <Button size="small" variant="contained" color="primary" disabled
+                            className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+                            NFT Transfer Approved
+                        </Button>
+                    )
+                }
+                <br/>
+                <Button size="small" variant="contained" color="primary" onClick={() => finalizeNFTListing(currNFT.tokenId)}
+                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}
+                    disabled={!NFTTransferApproved}>
                     List NFT for Sale
                 </Button>
             </Modal.Body>
@@ -332,12 +451,27 @@ export default function marketplace(props) {
                                     <Typography variant="p" component="div" className="text-2xl font-bold text-center mt-3">
                                         {nft.NFTDescription}
                                     </Typography>
+                                    <Typography variant="p" component="div" className="text-2xl font-bold text-center mt-3">
+                                        {nft.price} CHES
+                                    </Typography>
                                     </div>
                                 </div>
-                                <Button size="small" variant="contained" color="primary" onClick={() => {}}
-                                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
-                                    Purchase NFT
-                                </Button>
+                                {
+                                    currApprovedNFTId != nft.itemId && (
+                                        <Button size="small" variant="contained" color="primary" onClick={() => startNFTPurchase(nft.itemId, nft.price)}
+                                            className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+                                            Purchase NFT
+                                        </Button>
+                                    )
+                                }
+                                {
+                                    currApprovedNFTId == nft.itemId && (
+                                        <Button size="small" variant="contained" color="primary" onClick={() => finishNFTPurchase(nft.itemId, nft.price)}
+                                            className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+                                            Finalize Purchase
+                                        </Button>
+                                    )
+                                }
                             </Grid>
                         )))
                     }
