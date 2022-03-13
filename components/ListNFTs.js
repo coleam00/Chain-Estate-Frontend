@@ -1,4 +1,6 @@
-import { Grid, Typography, Button, TextField } from '@mui/material';
+import { Grid, Typography, Button, TextField, CircularProgress } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import clsx from 'clsx';
 import axios from 'axios';
 import { useState, useEffect } from "react";
@@ -35,6 +37,14 @@ export default function ListNFTs(props) {
     const [showListNFTModal, setShowListNFTModal] = useState(false);
     const [currNFT, setCurrNFT] = useState({});
     const [NFTTransferApproved, setNFTTransferApproved] = useState(false);
+    const [NFTsLoaded, setNFTsLoaded] = useState(false);
+    const [currNFTViewed, setCurrNFTViewed] = useState(-1);
+    const [approvingNFTTransfer, setApprovingNFTTransfer] = useState(false);
+    const [listingNFT, setListingNFT] = useState(false);
+    const [showApprovalSuccess, setShowApprovalSuccess] = useState(false);
+    const [showListingSuccess, setShowListingSuccess] = useState(false);
+    const [showTransactionCancel, setShowTransactionCancel] = useState(false);
+
 
     const isConnected = account !== undefined;
 
@@ -52,11 +62,16 @@ export default function ListNFTs(props) {
         setCurrNFT(nft);
         setShowListNFTModal(true);
         setNFTTransferApproved(false);
+        setInputError("");
     }
     
     async function approveNFTTransferToMarketplace(tokenId) {
         if (NFTPrice > 0.0) {
             approveNFTTransfer(CHESMarketplaceAddress, tokenId);
+            setApprovingNFTTransfer(true);
+        }
+        else {
+            setInputError("Price Must be Above 0 CHES");
         }
     }
 
@@ -64,9 +79,15 @@ export default function ListNFTs(props) {
         console.log(approveNFTTransferState);
         if (approveNFTTransferState.status === "Success") {
             setNFTTransferApproved(true);
+            setApprovingNFTTransfer(false);
+            setShowApprovalSuccess(true);
+            setShowTransactionCancel(false);
         }
-        else {
-            setCurrApprovedNFTId(-1);
+        else if (approveNFTTransferState.status === "Exception") {
+            setApprovingNFTTransfer(false);
+            setShowTransactionCancel(true);
+            setShowApprovalSuccess(false);
+            setShowListingSuccess(false);
         }
     }, [approveNFTTransferState])
 
@@ -83,6 +104,7 @@ export default function ListNFTs(props) {
             const listingPrice = await marketplaceContractReadOnly.getListingPrice();
             const price = ethers.utils.parseUnits(NFTPrice, 'ether');
             createMarketItem(CHESNFTAddress, tokenId, price, {value: listingPrice});
+            setListingNFT(true);
         }
     }
 
@@ -91,7 +113,16 @@ export default function ListNFTs(props) {
         if (createMarketItemState.status === "Success") {
             setNFTTransferApproved(false);
             setShowListNFTModal(false);
+            setListingNFT(false);
+            setShowListingSuccess(true);
+            setShowTransactionCancel(false);
             getTokenURI();
+        }
+        else if (createMarketItemState.status === "Exception") {
+            setListingNFT(false);
+            setShowTransactionCancel(true);
+            setShowApprovalSuccess(false);
+            setShowListingSuccess(false);
         }
     }, [createMarketItemState])
 
@@ -134,6 +165,7 @@ export default function ListNFTs(props) {
         }
 
         setUserNFTs(JSON.parse(JSON.stringify(NFTArray)));
+        setNFTsLoaded(true);
     }
 
     useEffect(() => {
@@ -144,6 +176,21 @@ export default function ListNFTs(props) {
 
     return (
         <>
+            <Snackbar open={showApprovalSuccess} autoHideDuration={6000} onClose={() => {setShowApprovalSuccess(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowApprovalSuccess(false)}} severity="success" sx={{ width: '100%' }} >
+                    Approval Succeeded! Click "List NFT for Sale" to Finalize Your NFT Listing.
+                </MuiAlert>
+            </Snackbar>
+            <Snackbar open={showListingSuccess} autoHideDuration={6000} onClose={() => {setShowListingSuccess(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowListingSuccess(false)}} severity="success" sx={{ width: '100%' }} >
+                    Listing Succeeded!
+                </MuiAlert>
+            </Snackbar>
+            <Snackbar open={showTransactionCancel} autoHideDuration={6000} onClose={() => {setShowTransactionCancel(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowTransactionCancel(false)}} severity="error" sx={{ width: '100%' }} >
+                    Transaction Canceled
+                </MuiAlert>
+            </Snackbar>
             <Modal aria-labelledby="ListNFTModal" centered show={showListNFTModal} onHide={() => setShowListNFTModal(false)}>
                 <Modal.Header closeButton closeVariant={props.useDarkTheme ? "white" : "black"} className={props.useDarkTheme ? styles.modalDark : styles.modalLight}>
                     <Modal.Title>
@@ -162,8 +209,10 @@ export default function ListNFTs(props) {
                     {
                         !NFTTransferApproved && (
                             <Button size="small" variant="contained" color="primary" onClick={() => approveNFTTransferToMarketplace(currNFT.tokenId)}
-                                className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
-                                Approve NFT Transfer
+                                className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} 
+                                disabled={approvingNFTTransfer}>
+                                {approvingNFTTransfer && <CircularProgress size={18} color="secondary"/>} 
+                                {approvingNFTTransfer ? <>&nbsp; Approving</> : "Approve NFT Transfer"}
                             </Button>
                         )
                     }
@@ -178,43 +227,69 @@ export default function ListNFTs(props) {
                     <br/>
                     <Button size="small" variant="contained" color="primary" onClick={() => finalizeNFTListing(currNFT.tokenId)}
                         className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}
-                        disabled={!NFTTransferApproved}>
-                        List NFT for Sale
+                        disabled={!NFTTransferApproved || listingNFT}>
+                        {listingNFT && <CircularProgress size={18} color="secondary"/>} 
+                        {listingNFT ? <>&nbsp; Listing</> : "List NFT for Sale"}
                     </Button>
                 </Modal.Body>
             </Modal>
 
-            <Grid container justifyContent="center" alignItems="center" className="mt-5" spacing={4}>
-                <Grid item xs={12}>
-                    <Typography variant="h5" component="div" className="text-center">
-                        Your NFTs
-                    </Typography>
-                </Grid>
-                <Grid item xs={10}>
-                    <Grid container justifyContent="center" alignItems="center" spacing={4}>
-                        {
-                            userNFTs.map((nft, i) => (
-                                <Grid key={i} item xs={3} className={styles.NFTGrid}>
-                                    <div key={i} className="shadow rounded-xl overflow-hidden">
-                                        <img src={nft.image} className={clsx(styles.NFTImage, "rounded")} />
-                                        <div className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>
-                                        <Typography variant="p" component="div" className="text-2xl font-bold text-center">
-                                            {nft.NFTName}
-                                        </Typography>
-                                        <Typography variant="p" component="div" className="text-2xl font-bold text-center mt-3">
-                                            {nft.NFTDescription}
-                                        </Typography>
-                                        </div>
-                                    </div>
-                                    <Button size="small" variant="contained" color="primary" onClick={() => startNFTListing(nft)}
-                                        className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
-                                        List NFT for Sale
-                                    </Button>
-                                </Grid>
-                            ))
-                        }
-                    </Grid>
-                </Grid>
+            <Grid container justifyContent="center" spacing={4} className={styles.marketplaceFunctionGrid}>
+                {
+                    !isConnected && (
+                        <Grid item xs={10} className="text-center">
+                            <Typography variant="h5" component="div">
+                                Connect Your Wallet in the Navigation Menu to View Your Chain Estate DAO NFTs
+                            </Typography>
+                        </Grid>
+                    )
+                }
+                {
+                    isConnected && userNFTs.length == 0 && NFTsLoaded && (
+                        <Grid item xs={10} className="text-center">
+                            <Typography variant="h5" component="div">
+                                You Currently do not have any Chain Estate DAO NFTs
+                            </Typography>
+                        </Grid>
+                    )
+                }
+                {
+                    isConnected && userNFTs.length > 0 && (
+                        <Grid item xs={10}>
+                            <Grid container justifyContent="center" alignItems="center" spacing={4}>
+                                {
+                                    userNFTs && (userNFTs.map((nft, i) => (
+                                        <Grid key={i} item xs={3} className={styles.NFTGrid}>
+                                            <div key={i} className={clsx(styles.cardDiv, "rounded-xl overflow-hidden")} onMouseEnter={() => setCurrNFTViewed(nft.tokenId)} onMouseLeave={() => setCurrNFTViewed(-1)}>
+                                                <img src={nft.image} className={clsx(styles.NFTImage)} />
+                                                <div className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>
+                                                    <Typography variant="p" component="div" className="text-2xl font-bold">
+                                                        {nft.NFTName}
+                                                    </Typography>
+                                                    {
+                                                        currNFTViewed != nft.tokenId && (
+                                                            <Typography variant="p" component="div" className="font-bold mt-3">
+                                                                {nft.NFTDescription}
+                                                            </Typography>
+                                                        )
+                                                    }
+                                                    {
+                                                        currNFTViewed == nft.tokenId && (
+                                                            <Button size="small" variant="contained" color="primary" onClick={() => startNFTListing(nft)}
+                                                                className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
+                                                                List NFT for Sale
+                                                            </Button>
+                                                        )
+                                                    }
+                                                </div>
+                                            </div>
+                                        </Grid>
+                                    )))
+                                }
+                            </Grid>
+                        </Grid>
+                    )
+                }
             </Grid>
         </>
     )

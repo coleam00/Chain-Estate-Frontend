@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import { ThemeProvider, createTheme, Paper } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { DAppProvider, Rinkeby } from '@usedapp/core';
+import { DAppProvider, Rinkeby, BSC } from '@usedapp/core';
 
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
-import '../styles/globals.css'
+import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyApp({ Component, pageProps }) {
@@ -73,7 +73,17 @@ function MyApp({ Component, pageProps }) {
   }, [useDarkTheme]);
 
   const config = {
-    networks: [Rinkeby]
+    networks: [Rinkeby],
+    /*
+    readOnlyChainId: Rinkeby.chainId,
+    readOnlyUrls: {
+      [Rinkeby.chainId]: 'https://mainnet.infura.io/v3/6072d26abea94891822694b3488ab955',
+    },
+    multicallAddresses: {
+      ...MULTICALL_ADDRESSES,
+  },
+    multicallVersion: 2,
+    */
   }
 
   return (

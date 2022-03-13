@@ -6,11 +6,11 @@ import { constants } from "ethers";
 import styles from '../styles/marketplace.module.css';
 import chainConfig from "../chain-config.json";
 
-import ViewMarketplaceNFTs from "../components/ViewMarketplaceNFTs";
+import CreateNFTs from "../components/CreateNFTs";
 
 const network = "rinkeby";
 
-export default function marketplace(props) {
+export default function createnfts(props) {
     const { account, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
     const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;
@@ -22,12 +22,12 @@ export default function marketplace(props) {
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
             <Grid item xs={4} className={styles.headerGrid}>
                 <Typography variant="h4" className={clsx(styles.header, props.useDarkTheme ? styles.darkHeader : styles.lightHeader)}>
-                    Chain Estate DAO NFT Marketplace
+                    Create Chain Estate DAO NFTs
                 </Typography>
             </Grid>
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
             
-            <ViewMarketplaceNFTs {...props} />
+            <CreateNFTs {...props} />
         </Grid>
     )
 }

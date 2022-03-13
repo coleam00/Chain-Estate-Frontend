@@ -17,7 +17,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
 
     const { account, activateBrowserWallet, deactivate, chainId } = useEthers();
     const sections = ["about", "tokenomics", "roadmap"];
-    const walletSections = ["marketplace"];
+    const walletSections = ["marketplace", "mynfts", "createnfts"];
 
     const [isWalletPage, setIsWalletPage] = useState(false);
 
@@ -71,14 +71,14 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                 Home
                             </Typography>
                         </Nav.Link>
-                        <Nav.Link className={styles.navPadding} onClick={() => moveToSection("about")}>
+                        <Nav.Link href="/marketplace" className={styles.navPadding} >
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
-                                About
+                                NFT Marketplace
                             </Typography>
                         </Nav.Link>
-                        <Nav.Link className={styles.navPadding} onClick={() => moveToSection("tokenomics")}>
+                        <Nav.Link href="/mynfts" className={styles.navPadding} >
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
-                                Tokenomics
+                                My NFTs
                             </Typography>
                         </Nav.Link>
                         <Nav.Link className={styles.navPadding} onClick={() => moveToSection("roadmap")}>
