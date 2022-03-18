@@ -8,8 +8,6 @@ import chainConfig from "../chain-config.json";
 
 import ListNFTs from "../components/ListNFTs";
 
-const network = "rinkeby";
-
 export default function mynfts(props) {
     const { account, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";

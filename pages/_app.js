@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ThemeProvider, createTheme, Paper } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { DAppProvider, Rinkeby, BSC } from '@usedapp/core';
+import { DAppProvider, Rinkeby, BSC, BSCTestnet } from '@usedapp/core';
 
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -73,7 +73,7 @@ function MyApp({ Component, pageProps }) {
   }, [useDarkTheme]);
 
   const config = {
-    networks: [Rinkeby],
+    networks: [BSCTestnet],
     /*
     readOnlyChainId: Rinkeby.chainId,
     readOnlyUrls: {

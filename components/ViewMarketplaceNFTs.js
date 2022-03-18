@@ -16,7 +16,7 @@ import CHESNFT from "../contracts/ChainEstateNFT.json";
 import CHESMarketplace from "../contracts/ChainEstateMarketplace.json";
 import chainConfig from "../chain-config.json";
 
-const network = "rinkeby";
+const network = "bsctest";
 
 async function useMarketItems(
     marketplaceContract
@@ -38,7 +38,8 @@ async function useMarketItems(
 
 export default function ViewMarketplaceNFTs(props) {
     const { account, chainId } = useEthers();
-    const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
+    // const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
+    const networkName = "bsctest";
     const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;
     const CHESNFTAddress = chainId ? chainConfig["CHESNFTAddresses"][networkName] : constants.AddressZero;
     const CHESMarketplaceAddress = chainId ? chainConfig["CHESNFTMarketplaceAddresses"][networkName] : constants.AddressZero;
@@ -47,7 +48,7 @@ export default function ViewMarketplaceNFTs(props) {
 
     const chesABI = CHESToken.abi;
     const nftAbi = CHESNFT.abi;
-    const marketplaceAbi = CHESMarketplace.abi
+    const marketplaceAbi = CHESMarketplace.abi;
     
     const chesInterface = new utils.Interface(chesABI);
     const chesContract = new Contract(CHESAddress, chesInterface);
@@ -209,7 +210,7 @@ export default function ViewMarketplaceNFTs(props) {
                         <Grid container justifyContent="center" alignItems="center" spacing={4}>
                             {
                                 marketplaceNFTs && (marketplaceNFTs.map((nft, i) => (
-                                    <Grid key={i} item xs={3} className={styles.NFTGrid}>
+                                    <Grid key={i} item xs={12} sm={6} md={4} lg={3} className={styles.NFTGrid}>
                                         <div key={i} className={clsx(styles.cardDiv, "rounded-xl overflow-hidden")} onMouseEnter={() => setCurrNFT(nft.itemId)} onMouseLeave={() => setCurrNFT(-1)}>
                                             <img src={nft.image} className={clsx(styles.NFTImage)} />
                                             <Grid container justifyContent="center" alignItems="center" className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>

@@ -8,8 +8,6 @@ import chainConfig from "../chain-config.json";
 
 import ViewMarketplaceNFTs from "../components/ViewMarketplaceNFTs";
 
-const network = "rinkeby";
-
 export default function marketplace(props) {
     const { account, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";

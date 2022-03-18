@@ -15,7 +15,26 @@ import CHESNFT from "../contracts/ChainEstateNFT.json";
 import CHESMarketplace from "../contracts/ChainEstateMarketplace.json";
 import chainConfig from "../chain-config.json";
 
-const network = "rinkeby";
+const network = "bsctest";
+
+async function useUserMarketItems(
+    marketplaceContract
+  ) {
+    const { value, error } =
+        useCall(
+        marketplaceContract && {
+            contract: marketplaceContract, // instance of called contract
+            method: "fetchUnsoldItemsCreated", // Method to be called
+            args: [], // Method arguments - address to be checked for balance
+          }
+      ) ?? {};
+    if(error) {
+      console.error(error.message)
+      return undefined
+    }
+    console.log(value);
+    return value?.[0]
+  }
 
 export default function ListNFTs(props) {
     const { account, chainId } = useEthers();
@@ -31,6 +50,7 @@ export default function ListNFTs(props) {
     const marketplaceInterface = new utils.Interface(marketplaceAbi);
     const marketplaceContract = new Contract(CHESMarketplaceAddress, marketplaceInterface);
 
+    const userMarketItems = useUserMarketItems(marketplaceContract);
     const [inputError, setInputError] = useState("");
     const [NFTPrice, setNFTPrice] = useState(0.0);
     const [userNFTs, setUserNFTs] = useState([]);
@@ -44,6 +64,13 @@ export default function ListNFTs(props) {
     const [showApprovalSuccess, setShowApprovalSuccess] = useState(false);
     const [showListingSuccess, setShowListingSuccess] = useState(false);
     const [showTransactionCancel, setShowTransactionCancel] = useState(false);
+    const [userMarketNFTs, setUserMarketNFTs] = useState([]);
+    const [marketNFTsLoaded, setMarketNFTsLoaded] = useState(false);
+    const [currNFTCanceling, setCurrNFTCanceling] = useState(-1);
+    const [currListedNFTViewed, setCurrListedNFTViewed] = useState(-1);
+    const [cancelingNFTListing, setCancelingNFTListing] = useState(false);
+    const [showCancelSuccess, setShowCancelSuccess] = useState(false);
+    const [showCancelFail, setShowCancelFail] = useState(false);
 
 
     const isConnected = account !== undefined;
@@ -56,6 +83,11 @@ export default function ListNFTs(props) {
     const { send: createMarketItem, state: createMarketItemState } =
         useContractFunction(marketplaceContract, "createMarketItem", {
             transactionName: "List a Chain Estate DAO NFT on the Marketplace",
+    })
+
+    const { send: cancelMarketSale, state: cancelMarketSaleState } =
+        useContractFunction(marketplaceContract, "cancelMarketSale", {
+            transactionName: "Cancel a Chain Estate DAO NFT listing on the marketplace",
     })
 
     function startNFTListing(nft) {
@@ -126,6 +158,65 @@ export default function ListNFTs(props) {
         }
     }, [createMarketItemState])
 
+    async function updateUserMarketNFTs(userMarketItemsResult) {
+        console.log("Updating user marketplace NFTs.");
+        let userMarketplaceNFTArray = [];
+
+        const web3Modal = new Web3Modal({
+            network: network,
+            cacheProvider: true,
+          })
+        const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+        const nftContractReadOnly = new ethers.Contract(CHESNFTAddress, nftAbi, provider);
+
+        for(let i = 0; i < userMarketItemsResult.length; i++) {
+            const currTokenId = userMarketItemsResult[i].tokenId;
+            const currTokenURI = await nftContractReadOnly.tokenURI(currTokenId);
+            const metaData = await axios.get(currTokenURI);
+            const price = ethers.utils.formatEther(BigInt(userMarketItemsResult[i].price._hex).toString(10));
+            const itemId = BigInt(userMarketItemsResult[i].itemId._hex).toString(10);
+            userMarketplaceNFTArray.push(Object.assign({}, metaData.data, {price: price, itemId: itemId}));
+        }
+
+        setUserMarketNFTs(JSON.parse(JSON.stringify(userMarketplaceNFTArray)));
+        setMarketNFTsLoaded(true);
+    }
+
+    useEffect(() => {
+        userMarketItems.then(userMarketItemsResult => {
+            if (userMarketItemsResult && userMarketNFTs.length !== userMarketItemsResult.length) {
+                updateUserMarketNFTs(userMarketItemsResult);
+            }
+            else if (isConnected && userMarketNFTs.length == 0) {
+                setMarketNFTsLoaded(true);
+            }
+        });
+    }, [userMarketItems])
+
+    const cancelNFTListing = (itemId) => {
+        setCancelingNFTListing(true);
+        setCurrNFTCanceling(itemId);
+        cancelMarketSale(CHESNFTAddress, itemId);
+    }
+
+    useEffect(() => {
+        console.log(cancelMarketSaleState);
+        if (cancelMarketSaleState.status === "Success") {
+            setCurrNFTCanceling(-1);
+            setCancelingNFTListing(false);
+            setShowCancelSuccess(true);
+            setShowCancelFail(false);
+            getTokenURI();
+        }
+        else if (cancelMarketSaleState.status === "Exception") {
+            setCurrNFTCanceling(-1);
+            setCancelingNFTListing(false);
+            setShowCancelFail(true);
+            setShowCancelSuccess(false);
+        }
+    }, [cancelMarketSaleState])
+
     const isNumeric = stringToTest => {
         return !isNaN(stringToTest) && !isNaN(parseFloat(stringToTest));
     }
@@ -159,8 +250,6 @@ export default function ListNFTs(props) {
                 const tokenURI = await nftContractReadOnly.tokenURI(id);
                 const metaData = await axios.get(tokenURI);
                 NFTArray.push(Object.assign({}, metaData.data, {tokenId: id}));
-                NFTArray.push(Object.assign({}, metaData.data, {tokenId: id}));
-                NFTArray.push(Object.assign({}, metaData.data, {tokenId: id}));
             }
         }
 
@@ -189,6 +278,16 @@ export default function ListNFTs(props) {
             <Snackbar open={showTransactionCancel} autoHideDuration={6000} onClose={() => {setShowTransactionCancel(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowTransactionCancel(false)}} severity="error" sx={{ width: '100%' }} >
                     Transaction Canceled
+                </MuiAlert>
+            </Snackbar>
+            <Snackbar open={showCancelSuccess} autoHideDuration={6000} onClose={() => {setShowCancelSuccess(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowCancelSuccess(false)}} severity="success" sx={{ width: '100%' }} >
+                    Listing Canceled Successfully!
+                </MuiAlert>
+            </Snackbar>
+            <Snackbar open={showCancelFail} autoHideDuration={6000} onClose={() => {setShowCancelFail(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowCancelFail(false)}} severity="error" sx={{ width: '100%' }} >
+                    Listing Cancelation Stopped
                 </MuiAlert>
             </Snackbar>
             <Modal aria-labelledby="ListNFTModal" centered show={showListNFTModal} onHide={() => setShowListNFTModal(false)}>
@@ -259,7 +358,7 @@ export default function ListNFTs(props) {
                             <Grid container justifyContent="center" alignItems="center" spacing={4}>
                                 {
                                     userNFTs && (userNFTs.map((nft, i) => (
-                                        <Grid key={i} item xs={3} className={styles.NFTGrid}>
+                                        <Grid key={i} item xs={12} sm={6} md={4} lg={3} className={styles.NFTGrid}>
                                             <div key={i} className={clsx(styles.cardDiv, "rounded-xl overflow-hidden")} onMouseEnter={() => setCurrNFTViewed(nft.tokenId)} onMouseLeave={() => setCurrNFTViewed(-1)}>
                                                 <img src={nft.image} className={clsx(styles.NFTImage)} />
                                                 <div className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>
@@ -268,7 +367,7 @@ export default function ListNFTs(props) {
                                                     </Typography>
                                                     {
                                                         currNFTViewed != nft.tokenId && (
-                                                            <Typography variant="p" component="div" className="font-bold mt-3">
+                                                            <Typography variant="p" component="div" className={clsx(styles.nftDescriptionText,"font-bold mt-3")}>
                                                                 {nft.NFTDescription}
                                                             </Typography>
                                                         )
@@ -282,6 +381,67 @@ export default function ListNFTs(props) {
                                                         )
                                                     }
                                                 </div>
+                                            </div>
+                                        </Grid>
+                                    )))
+                                }
+                            </Grid>
+                        </Grid>
+                    )
+                }
+                {
+                    isConnected && userMarketNFTs.length > 0 && (
+                        <>
+                            <Grid item xs={4} className={styles.spacingGrid}></Grid>
+                            <Grid item xs={4} className={clsx(styles.headerGrid, styles.myListedNFTsTitle)}>
+                                <Typography variant="h4" className={clsx(styles.header, props.useDarkTheme ? styles.darkHeader : styles.lightHeader)}>
+                                    My listed Chain Estate DAO NFTs
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4} className={styles.spacingGrid}></Grid>
+                        </>
+                    )
+                }
+                {
+                    isConnected && userMarketNFTs.length > 0 && (
+                        <Grid item xs={10}>
+                            <Grid container justifyContent="center" alignItems="center" spacing={4}>
+                                {
+                                    userMarketNFTs && (userMarketNFTs.map((nft, i) => (
+                                        <Grid key={i} item xs={12} sm={6} md={4} lg={3} className={styles.NFTGrid}>
+                                            <div key={i} className={clsx(styles.cardDiv, "rounded-xl overflow-hidden")} onMouseEnter={() => setCurrListedNFTViewed(nft.itemId)} onMouseLeave={() => setCurrListedNFTViewed(-1)}>
+                                                <img src={nft.image} className={clsx(styles.NFTImage)} />
+                                                <Grid container justifyContent="center" alignItems="center" className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>
+                                                    <Grid item xs={7} className={styles.nftNameAndDesc}>
+                                                        <Typography variant="p" component="div" className={clsx(styles.NFTName, "text-2xl font-bold")}>
+                                                            {nft.NFTName}
+                                                        </Typography>
+                                                        {
+                                                            currListedNFTViewed != nft.itemId && currNFTCanceling != nft.itemId && (
+                                                                <Typography variant="p" component="div" className={clsx(styles.NFTDescription, "font-bold mt-3")}>
+                                                                    {nft.NFTDescription}
+                                                                </Typography>
+                                                            )
+                                                        }
+                                                        {
+                                                            (currListedNFTViewed == nft.itemId || currNFTCanceling == nft.itemId) && currApprovedNFTId != nft.itemId && (
+                                                                <Button size="small" variant="contained" color="primary" onClick={() => cancelNFTListing(nft.itemId)}
+                                                                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={cancelingNFTListing !== -1}>
+                                                                    {cancelingNFTListing == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
+                                                                    {cancelingNFTListing == nft.itemId ? <>&nbsp; Canceling</> : "Cancel Listing"}
+                                                                </Button>
+                                                            )
+                                                        }
+                                                    </Grid>
+                                                    <Grid item xs={5} className={styles.nftPrice}>
+                                                        <Typography variant="p" component="div" className={clsx(styles.NFTPrice, "font-bold")}>
+                                                            <ImPriceTag /> Price
+                                                        </Typography>
+                                                        <Typography variant="p" component="div" className={clsx(styles.NFTPrice, "font-bold mt-3")}>
+                                                            {nft.price} CHES
+                                                        </Typography>
+                                                    </Grid>
+                                                </Grid>
                                             </div>
                                         </Grid>
                                     )))

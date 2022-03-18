@@ -1,18 +1,23 @@
 {
     "chainIds": {
-        "4": "rinkeby",
-        "1337": "dev"
+        "40": "rinkeby",
+        "1337": "dev",
+        "97": "bsctest"
     },
     "CHESTokenAddresses": {
-        "rinkeby": "0xd2cf313CdAD8F99bCdEd14120d679c15218b787A"
+        "rinkeby": "0xd2cf313CdAD8F99bCdEd14120d679c15218b787A",
+        "bsctest": "0x42b3be0E4769D5715b7D5a8D8D765C2E9D2aeD9D"
     },
     "CHESAirDropAddresses": {
-        "rinkeby": "0xf64c5BCfA450C1eeF223fF2B424F0Bb74153d75D"
+        "rinkeby": "0xf64c5BCfA450C1eeF223fF2B424F0Bb74153d75D",
+        "bsctest": "0x64304DEEd2d727040c932068Bc8506df30e20255"
     },
     "CHESNFTAddresses": {
-        "rinkeby": "0x2e073804d7a09DA862230812806783Cfb0A5b1AC"
+        "rinkeby": "0x2e073804d7a09DA862230812806783Cfb0A5b1AC",
+        "bsctest": "0xd1d0D9F794B8FDDFef173C24024E9a9E0A3Bc2DD"
     },
     "CHESNFTMarketplaceAddresses": {
-        "rinkeby": "0x058942C7De931125f44b0Ed3BD249734ec725196"
+        "rinkeby": "0x058942C7De931125f44b0Ed3BD249734ec725196",
+        "bsctest": "0x8C7a06B17Fb33cB9941908CFF823A2860Fd6f797"
     }
 }

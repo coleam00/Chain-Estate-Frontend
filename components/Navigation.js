@@ -2,6 +2,8 @@ import { Grid, Typography, Switch, Button } from '@mui/material';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import { gsap } from "gsap";
 import { IconContext } from "react-icons";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
@@ -20,6 +22,12 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
     const walletSections = ["marketplace", "mynfts", "createnfts"];
 
     const [isWalletPage, setIsWalletPage] = useState(false);
+    const [showWalletConnectionFailed, setShowWalletConnectionFailed] = useState(false);
+    const [showWrongNetwork, setShowWrongNetwork] = useState(false);
+
+    if (account && chainId != "97" && chainId != 97 && !showWrongNetwork) {
+        setShowWrongNetwork(true);
+    }
 
     const moveToSection = (section) => {
         if (window.location.pathname == "/") {
@@ -47,10 +55,32 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
         }
     }, []);
 
+    const connectBrowserWallet = () => {
+        try {
+            activateBrowserWallet();
+        }
+        catch {
+            setShowWalletConnectionFailed(true);
+        }
+        if (!window.ethereum) {
+            setShowWalletConnectionFailed(true);
+        }
+    }
+
     const isConnected = account !== undefined;
 
     return (
         <Grid container justifyContent="center" className={useDarkTheme ? styles.navGridDark : styles.navGridLight}>
+            <Snackbar open={showWalletConnectionFailed} autoHideDuration={6000} onClose={() => {setShowWalletConnectionFailed(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowWalletConnectionFailed(false)}} severity="error" sx={{ width: '100%' }} >
+                    Failed to connect web3 wallet. Make sure you have a browser wallet like MetaMask installed.
+                </MuiAlert>
+            </Snackbar>
+            <Snackbar open={showWrongNetwork} autoHideDuration={6000} onClose={() => {setShowWrongNetwork(false)}}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowWrongNetwork(false)}} severity="error" sx={{ width: '100%' }} >
+                    Failed to connect web3 wallet - wrong network. Please connect to the Binance Testnet and refresh the page.
+                </MuiAlert>
+            </Snackbar>
             <Navbar expand="lg" bg={useDarkTheme ? "custom-dark" : "custom-light"} variant={useDarkTheme ? "dark" : "light"} className={clsx("m-auto", styles.navBar)}>
                 <Navbar.Text className={styles.navBarBrand}>
                     <Container>
@@ -138,7 +168,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                             Disconnect
                                         </Button>
                                     ) : (
-                                        <Button size="small" variant="contained" color="primary" onClick={() => activateBrowserWallet()}
+                                        <Button size="small" variant="contained" color="primary" onClick={() => connectBrowserWallet()}
                                             className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
                                             Connect
                                         </Button>

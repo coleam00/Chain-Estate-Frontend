@@ -162,7 +162,11 @@
 .nftPrice {
     float: right !important;
     text-align: right !important;
-    }
+}
+
+.nftDescriptionText {
+    font-size: 12px !important;
+}
 
 .listNFTBtn {
     margin-left: auto !important;
@@ -199,6 +203,11 @@
 
 .darkText {
     color: white !important;
+}
+
+.myListedNFTsTitle {
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
 }
 
 @media (max-width: 900px) {
