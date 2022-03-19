@@ -1,0 +1,261 @@
+.mainGrid {
+    margin-top: 5% !important;
+    margin-bottom: 1% !important;
+    min-height: 20vh !important;
+}
+
+.marketplaceFunctionGrid {
+    margin-top: 5% !important;
+    min-height: 90vh !important;
+}
+
+.header {
+    text-align: center !important;
+    margin-bottom: 1% !important;
+}
+
+.darkHeader {
+    border-bottom: 5px solid var(--dark-theme-primary-color);
+}
+
+.lightHeader {
+    border-bottom: 5px solid var(--light-theme-primary-color);
+}
+
+.marketplaceOption {
+    text-align: center !important;
+    margin-top: 5% !important;
+}
+
+.btnDark:hover {
+    color: black !important;
+  }
+  
+  .btnLight:hover {
+    color: white !important;
+  }
+
+.comingSoonText {
+    text-align: center !important;
+}
+
+.haveLaunchedText {
+    margin-top: -7% !important;
+    text-align: center !important;
+}
+
+.launchText {
+    text-align: center !important;
+    margin-top: -10% !important;
+}
+
+.swapBtnGrid {
+    margin-top: -5% !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.swapBtn {
+    margin: auto !important;
+}
+
+.connectBtnDark:hover {
+    color: white !important;
+}
+  
+.connectBtnLight:hover {
+    color: white !important;
+}
+
+.connectGrid {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.customCardDark {
+    background-color: #1d263b !important;
+}
+
+.customCardLight {
+    background-color: #eaeef3 !important;
+}
+
+.btnDark:hover {
+    color: black !important;
+}
+  
+.btnLight:hover {
+    color: white !important;
+}
+
+.customCard {
+    border-radius: 5% !important;
+    display: flex !important;
+    padding-top: 2% !important;
+    padding-bottom: 4% !important;
+}
+
+.cardContentDiv {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.connectBtn {
+    margin-top: 10% !important;
+}
+
+.cardBtn {
+    margin: auto !important;
+}
+
+.CHESPurchaseInput {
+    margin-top: 8% !important;
+    margin-bottom: 5% !important;
+}
+
+.fileInput {
+    display: none !important;
+}
+
+.NFTGrid {
+    text-align: center !important;
+}
+
+.cardDiv {
+    border-radius: 20px !important;
+    cursor: pointer !important;
+    transition: all ease 200ms !important;
+    box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03) !important;
+}
+
+.cardDiv:hover {
+    transform: scale(1.03) !important;
+    box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02) !important;
+}
+
+.NFTName {
+    font-size: 0.9rem !important;
+}
+
+.NFTDescription {
+    font-size: 0.7rem !important;
+}
+
+.NFTPrice {
+    font-size: 0.9rem !important;
+}
+
+.purchaseNFTGrid {
+    margin-top: 5% !important;
+}
+
+.NFTImage {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.nftNameAndDesc {
+    float: left !important;
+    text-align: left !important;
+}
+
+.nftPrice {
+    float: right !important;
+    text-align: right !important;
+}
+
+.nftDescriptionText {
+    font-size: 12px !important;
+}
+
+.listNFTBtn {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 8% !important;
+    text-align: center !important;
+}
+
+.NFTText {
+    background-color: #1d263b;
+}
+
+.NFTTextDark {
+    background-color: #1d263b !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+}
+
+.NFTTextLight {
+    background-color: #eaeef3 !important;
+}
+
+.modalBody {
+    text-align: center !important;
+}
+
+.modalDark {
+    background-color: #1d263b !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+}
+
+.modalLight {
+    background-color: #eaeef3 !important;
+}
+
+.darkText {
+    color: white !important;
+}
+
+.myListedNFTsTitle {
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+}
+
+@media (max-width: 900px) {
+    .spacingGrid {
+        max-width: 25% !important;
+        flex: 25% !important;
+    }
+
+    .headerGrid {
+        max-width: 50% !important;
+        flex: 50% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 725px) {
+    .haveLaunchedText {
+        margin-top: 5% !important;
+    }
+    
+    .launchText {
+        margin-top: 5% !important;
+    }
+    
+    .swapBtnGrid {
+        margin-top: 5% !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .spacingGrid {
+        max-width: 15% !important;
+        flex: 15% !important;
+    }
+
+    .headerGrid {
+        max-width: 70% !important;
+        flex: 70% !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        margin-top: 8% !important;
+    }
+
+    .comingSoonText {
+        margin-top: -15% !important;
+    }
+}

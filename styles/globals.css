@@ -25,6 +25,10 @@ a {
   border-radius: 0px !important;
 }
 
+.modal-content {
+  background: gray !important;
+}
+
 .bg-custom-dark {
   background-color: none !important;
 }
