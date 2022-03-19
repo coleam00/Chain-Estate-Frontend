@@ -14,10 +14,10 @@
     },
     "CHESNFTAddresses": {
         "rinkeby": "0x2e073804d7a09DA862230812806783Cfb0A5b1AC",
-        "bsctest": "0xd1d0D9F794B8FDDFef173C24024E9a9E0A3Bc2DD"
+        "bsctest": "0x3294b2f1aac82B6c0C91d2183c555ED7a6E65D03"
     },
     "CHESNFTMarketplaceAddresses": {
         "rinkeby": "0x058942C7De931125f44b0Ed3BD249734ec725196",
-        "bsctest": "0x8C7a06B17Fb33cB9941908CFF823A2860Fd6f797"
+        "bsctest": "0x2974F8a9Be298C0E0CBdC6C957317e818d4bC3cd"
     }
 }

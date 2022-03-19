@@ -4,6 +4,7 @@ import MuiAlert from '@mui/material/Alert';
 import clsx from 'clsx';
 import axios from 'axios';
 import { useState, useEffect } from "react";
+import { ImPriceTag } from 'react-icons/im';
 import { useEthers, useContractFunction, useCall } from "@usedapp/core";
 import { constants, utils, ethers } from "ethers";
 import { Contract } from "@ethersproject/contracts";
@@ -14,23 +15,25 @@ import styles from '../styles/marketplace.module.css';
 import CHESNFT from "../contracts/ChainEstateNFT.json";
 import CHESMarketplace from "../contracts/ChainEstateMarketplace.json";
 import chainConfig from "../chain-config.json";
+import { InsertCommentRounded } from '@mui/icons-material';
 
 const network = "bsctest";
 
 async function useUserMarketItems(
-    marketplaceContract
+    marketplaceContract,
+    accountAddress
   ) {
     const { value, error } =
         useCall(
         marketplaceContract && {
             contract: marketplaceContract, // instance of called contract
             method: "fetchUnsoldItemsCreated", // Method to be called
-            args: [], // Method arguments - address to be checked for balance
+            args: [accountAddress], // Method arguments - address to be checked for balance
           }
       ) ?? {};
     if(error) {
       console.error(error.message)
-      return undefined
+      return [];
     }
     console.log(value);
     return value?.[0]
@@ -50,7 +53,7 @@ export default function ListNFTs(props) {
     const marketplaceInterface = new utils.Interface(marketplaceAbi);
     const marketplaceContract = new Contract(CHESMarketplaceAddress, marketplaceInterface);
 
-    const userMarketItems = useUserMarketItems(marketplaceContract);
+    const userMarketItems = useUserMarketItems(marketplaceContract, account);
     const [inputError, setInputError] = useState("");
     const [NFTPrice, setNFTPrice] = useState(0.0);
     const [userNFTs, setUserNFTs] = useState([]);
@@ -353,6 +356,15 @@ export default function ListNFTs(props) {
                     )
                 }
                 {
+                    isConnected && userNFTs.length == 0 && !NFTsLoaded && (
+                        <Grid item xs={10} className="text-center">
+                            <Typography variant="h5" component="div">
+                                Loading your NFTs...
+                            </Typography>
+                        </Grid> 
+                    )
+                }
+                {
                     isConnected && userNFTs.length > 0 && (
                         <Grid item xs={10}>
                             <Grid container justifyContent="center" alignItems="center" spacing={4}>
@@ -424,9 +436,9 @@ export default function ListNFTs(props) {
                                                             )
                                                         }
                                                         {
-                                                            (currListedNFTViewed == nft.itemId || currNFTCanceling == nft.itemId) && currApprovedNFTId != nft.itemId && (
+                                                            (currListedNFTViewed == nft.itemId || currNFTCanceling == nft.itemId) && (
                                                                 <Button size="small" variant="contained" color="primary" onClick={() => cancelNFTListing(nft.itemId)}
-                                                                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={cancelingNFTListing !== -1}>
+                                                                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={cancelingNFTListing}>
                                                                     {cancelingNFTListing == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
                                                                     {cancelingNFTListing == nft.itemId ? <>&nbsp; Canceling</> : "Cancel Listing"}
                                                                 </Button>
