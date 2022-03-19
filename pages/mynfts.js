@@ -8,7 +8,7 @@ import chainConfig from "../chain-config.json";
 
 import ListNFTs from "../components/ListNFTs";
 
-export default function mynfts(props) {
+export default function MyNFTs(props) {
     const { account, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
     const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;

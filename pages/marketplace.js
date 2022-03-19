@@ -8,7 +8,7 @@ import chainConfig from "../chain-config.json";
 
 import ViewMarketplaceNFTs from "../components/ViewMarketplaceNFTs";
 
-export default function marketplace(props) {
+export default function Marketplace(props) {
     const { account, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
     const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;

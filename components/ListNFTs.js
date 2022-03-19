@@ -270,7 +270,7 @@ export default function ListNFTs(props) {
         <>
             <Snackbar open={showApprovalSuccess} autoHideDuration={6000} onClose={() => {setShowApprovalSuccess(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowApprovalSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                    Approval Succeeded! Click "List NFT for Sale" to Finalize Your NFT Listing.
+                    Approval Succeeded! Click &quot;List NFT for Sale&quot; to Finalize Your NFT Listing.
                 </MuiAlert>
             </Snackbar>
             <Snackbar open={showListingSuccess} autoHideDuration={6000} onClose={() => {setShowListingSuccess(false)}}>

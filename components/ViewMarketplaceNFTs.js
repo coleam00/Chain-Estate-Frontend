@@ -173,7 +173,7 @@ export default function ViewMarketplaceNFTs(props) {
         <Grid container justifyContent="center" spacing={4} className={styles.marketplaceFunctionGrid}>
             <Snackbar open={showApprovalSuccess} autoHideDuration={6000} onClose={() => {setShowApprovalSuccess(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowApprovalSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                    Approval Succeeded! Click "Purchase" to Finalize Your NFT Purchase.
+                    Approval Succeeded! Click &quot;Purchase&quot; to Finalize Your NFT Purchase.
                 </MuiAlert>
             </Snackbar>
             <Snackbar open={showPurchaseSuccess} autoHideDuration={6000} onClose={() => {setShowPurchaseSuccess(false)}}>
