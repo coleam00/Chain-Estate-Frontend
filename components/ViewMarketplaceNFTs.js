@@ -239,7 +239,7 @@ export default function ViewMarketplaceNFTs(props) {
                                                             <Button size="small" variant="contained" color="primary" onClick={() => finishNFTPurchase(nft.itemId, nft.price)}
                                                                 className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={purchasingNFT !== -1}>
                                                                 {purchasingNFT == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
-                                                                {purchasingNFT == nft.itemId ? <>&nbsp; Purchasing</> : "Purchase"}
+                                                                {purchasingNFT == nft.itemId ? <>&nbsp; Buying</> : "Purchase"}
                                                             </Button>
                                                         )
                                                     }
