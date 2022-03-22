@@ -78,7 +78,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
             </Snackbar>
             <Snackbar open={showWrongNetwork} autoHideDuration={6000} onClose={() => {setShowWrongNetwork(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowWrongNetwork(false)}} severity="error" sx={{ width: '100%' }} >
-                    Failed to connect web3 wallet - wrong network. Please connect to the Binance Testnet and refresh the page.
+                    Failed to connect web3 wallet - wrong network. Please connect to the Binance Smart Chain and refresh the page.
                 </MuiAlert>
             </Snackbar>
             <Navbar expand="lg" bg={useDarkTheme ? "custom-dark" : "custom-light"} variant={useDarkTheme ? "dark" : "light"} className={clsx("m-auto", styles.navBar)}>
