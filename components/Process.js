@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
+import ReactPlayer from "react-player"
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -41,6 +42,9 @@ export default function Process(props) {
   const CHESInfo5 = useRef();
   const CHESInfo6 = useRef();
 
+  const videoHeaderRef = useRef();
+  const videoPlayerRef = useRef();
+
   const daoHeaderRef = useRef();
   const daoTextRef = useRef();
 
@@ -67,6 +71,9 @@ export default function Process(props) {
     gsap.from(CHESInfo4.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo4", start: "bottom bottom" } });
     gsap.from(CHESInfo5.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo5", start: "bottom bottom" } });
     gsap.from(CHESInfo6.current, { opacity: 0, duration: 1.5, scrollTrigger: { trigger: "#CHESInfo6", start: "bottom bottom" } });
+
+    gsap.from(videoHeaderRef.current, { opacity: 0, duration: 2, scrollTrigger: {trigger: "#videoHeader", start: "bottom bottom" } });
+    gsap.from(videoPlayerRef.current, { opacity: 0, duration: 1, scrollTrigger: { trigger: "#videoPlayer", start: "bottom bottom" } });
 
     gsap.from(daoHeaderRef.current, { opacity: 0, duration: 2, scrollTrigger: {trigger: "#daoHeader", start: "bottom bottom" } });
     gsap.from(daoTextRef.current, { opacity: 0, duration: 1, scrollTrigger: { trigger: "#daoText", start: "bottom bottom" } });
@@ -268,6 +275,14 @@ export default function Process(props) {
           <Typography variant="h6" ref={CHESInfo6} id="CHESInfo6" className={styles.addressText2}>
             0x9a313646d944086d7d037cba78c30918290781352d88b7c05b22b1650e47e907
           </Typography>
+        </Grid>
+        <Grid item xs={12} className={styles.daoHeaderGrid}>
+          <Typography variant="h4" ref={videoHeaderRef} id="videoHeader">
+            What is Chain Estate DAO?
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={styles.videoPlayerGrid}>
+          <ReactPlayer ref={videoPlayerRef} id="videoPlayer" className="videoPlayer" url="https://www.youtube.com/watch?v=5kW62QP6oqo" />
         </Grid>
         <Grid item xs={12} className={styles.daoHeaderGrid}>
           <Typography variant="h4" ref={daoHeaderRef} id="daoHeader">

@@ -177,7 +177,7 @@ export default function ListNFTs(props) {
             const currTokenId = userMarketItemsResult[i].tokenId;
             const currTokenURI = await nftContractReadOnly.tokenURI(currTokenId);
             const metaData = await axios.get(currTokenURI);
-            const price = ethers.utils.formatEther(BigInt(userMarketItemsResult[i].price._hex).toString(10));
+            const price = (+ethers.utils.formatEther(BigInt(userMarketItemsResult[i].price._hex).toString(10))).toFixed(1).toString();
             const itemId = BigInt(userMarketItemsResult[i].itemId._hex).toString(10);
             userMarketplaceNFTArray.push(Object.assign({}, metaData.data, {price: price, itemId: itemId}));
         }

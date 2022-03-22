@@ -19,13 +19,13 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
 
     const { account, activateBrowserWallet, deactivate, chainId } = useEthers();
     const sections = ["about", "tokenomics", "roadmap"];
-    const walletSections = ["marketplace", "mynfts", "createnfts"];
+    const walletSections = ["marketplace", "mynfts", "createnfts", "airdrops"];
 
     const [isWalletPage, setIsWalletPage] = useState(false);
     const [showWalletConnectionFailed, setShowWalletConnectionFailed] = useState(false);
     const [showWrongNetwork, setShowWrongNetwork] = useState(false);
 
-    if (account && chainId != "97" && chainId != 97 && !showWrongNetwork) {
+    if (account && chainId != "56" && chainId != 56 && !showWrongNetwork) {
         setShowWrongNetwork(true);
     }
 
@@ -101,6 +101,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                 Home
                             </Typography>
                         </Nav.Link>
+                        {/*
                         <Nav.Link href="/marketplace" className={styles.navPadding} >
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
                                 NFT Marketplace
@@ -109,6 +110,12 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                         <Nav.Link href="/mynfts" className={styles.navPadding} >
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
                                 My NFTs
+                            </Typography>
+                        </Nav.Link>
+                        */}
+                        <Nav.Link href="/airdrops" className={styles.navPadding} >
+                            <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
+                                Airdrops
                             </Typography>
                         </Nav.Link>
                         <Nav.Link className={styles.navPadding} onClick={() => moveToSection("roadmap")}>
@@ -145,7 +152,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                             </a>
                                         </div>
                                         <div className={clsx(styles.socialIcon, styles.socialIconSpacing)}>
-                                            <a href="https://t.me/chainestatedao" target="_blank" rel="noreferrer">
+                                            <a href="https://t.me/chainestatedaochat" target="_blank" rel="noreferrer">
                                                 <FaTelegram className={styles.iconSize} />
                                             </a>
                                         </div>

@@ -75,6 +75,11 @@ nav .container {
   padding-left: 0 !important;
 }
 
+.videoPlayer {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 @media (max-width: 1169px) {
   
   .vertical-timeline-element-date {

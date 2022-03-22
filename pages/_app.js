@@ -73,7 +73,7 @@ function MyApp({ Component, pageProps }) {
   }, [useDarkTheme]);
 
   const config = {
-    networks: [BSCTestnet],
+    networks: [BSCTestnet, BSC],
     /*
     readOnlyChainId: Rinkeby.chainId,
     readOnlyUrls: {

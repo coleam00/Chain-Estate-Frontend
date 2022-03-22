@@ -342,6 +342,13 @@
     flex-basis: 100% !important;
   }
 
+  .videoPlayerGrid {
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
   .addressText2 {
     font-size: 10px !important;
   }

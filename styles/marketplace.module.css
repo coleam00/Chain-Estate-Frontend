@@ -1,3 +1,89 @@
+.airdropGrid {
+    padding-bottom: 20vh !important;
+    padding-top: 4.5% !important;
+    margin-top: 0.5% !important;
+    margin-bottom: 1% !important;
+    text-align: center !important;
+}
+
+.airdropGridBeforeLoad {
+    padding-bottom: 60vh !important;
+}
+
+.airdropGridBackground {
+    background-image: url("../public/AirdropArt.jpg") !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.airdropGridShadowDark {
+    box-shadow: 0px 3px 5px rgb(87, 87, 87), 0px -3px 5px rgb(87, 87, 87) !important;
+}
+
+.airdropGridShadowLight {
+    box-shadow: 0px 2px 5px #888, 0px -2px 5px #888 !important;
+}
+
+.airDropGridItem {
+    margin-top: 5% !important;
+    font-size: 20px !important;
+}
+
+.airDropContentGrid {
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+}
+
+.airDropTokenLogoGrid {
+    margin-bottom: 7% !important;
+}
+
+.airDropCardDark {
+    background-color: #1d263b !important;
+}
+
+.airDropCardLight {
+    background-color: #bfc2c5 !important;
+}
+
+.loadingAirdropContent {
+    margin-top: 5% !important;
+}
+
+.airdropActiveIcon {
+    font-size: 30px !important;
+    margin-top: -1% !important;
+}
+
+.airdropContentCard {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 4% !important;
+    padding-bottom: 4% !important;
+    height: 50px !important;
+}
+
+.claimAirdropBtn {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    font-size: 20px !important;
+}
+
+.gridTopMargin {
+    margin-top: 10% !important;
+}
+
+.redText {
+    color: red !important;
+}
+
+.greenText {
+    color: lime !important;
+}
+
 .mainGrid {
     margin-top: 5% !important;
     margin-bottom: 1% !important;

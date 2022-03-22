@@ -57,7 +57,7 @@ nav .container {
 }
 
 .connectBtnDiv {
-    margin-top: 1% !important;
+    margin-top: 0.6% !important;
 }
 
 .connectBtnDark:hover {
@@ -169,7 +169,7 @@ nav .container {
     }
 
     .changeThemeDiv {
-        margin-top: 0.25rem !important;
+        margin-top: 0.2rem !important;
         margin-left: 3rem !important;
         margin-right: 0.5rem !important;
     }

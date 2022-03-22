@@ -97,7 +97,7 @@ export default function ViewMarketplaceNFTs(props) {
             const currTokenId = marketItemsResult[i].tokenId;
             const currTokenURI = await nftContractReadOnly.tokenURI(currTokenId);
             const metaData = await axios.get(currTokenURI);
-            const price = ethers.utils.formatEther(BigInt(marketItemsResult[i].price._hex).toString(10));
+            const price = (+ethers.utils.formatEther(BigInt(marketItemsResult[i].price._hex).toString(10))).toFixed(1).toString();
             const itemId = BigInt(marketItemsResult[i].itemId._hex).toString(10);
             marketplaceNFTArray.push(Object.assign({}, metaData.data, {price: price, itemId: itemId}));
         }
