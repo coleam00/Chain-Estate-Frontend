@@ -1,5 +1,6 @@
 import styles from '../styles/Home.module.css';
 
+import Navigation from '../components/Navigation';
 import Intro from '../components/Intro';
 import Process from '../components/Process';
 import TransactionFees from '../components/TransactionFees';
@@ -10,6 +11,8 @@ import Roadmap from '../components/Roadmap';
 
 export default function Home(props) {
   return (
+    <>
+    <Navigation useDarkTheme={props.useDarkTheme} setUseDarkTheme={props.setUseDarkTheme} />
     <div className={styles.container}>
       <main className={styles.main}>
         {/* ~~~~~ Intro Text and Image ~~~~~ */}
@@ -34,5 +37,6 @@ export default function Home(props) {
         <Roadmap useDarkTheme={props.useDarkTheme} />
       </main>
     </div>
+    </>
   )
 }

@@ -125,7 +125,7 @@ export default function Process(props) {
                 </Typography>
                 <Typography variant="p" component="div" className="mt-4">
                   BNB is the official coin of the Binance Smart Chain, and you can
-                  buy it many places, including binance.us and CoinBase.
+                  buy it many places, including binance.us.
                 </Typography>
               </CardContent>
               <CardActions>

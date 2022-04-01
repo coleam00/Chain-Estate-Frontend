@@ -4,11 +4,14 @@ import clsx from 'clsx';
 import { IconContext } from "react-icons";
 import { ImPlus, ImMinus } from 'react-icons/im';
 
+import Navigation from '../components/Navigation';
 import styles from '../styles/realEstateTypes.module.css';
 import apartmentComplexPic from '../public/Apartment.png';
 
 export default function apartmentComplexes(props) {
     return (
+        <>
+        <Navigation useDarkTheme={props.useDarkTheme} setUseDarkTheme={props.setUseDarkTheme} />
         <Grid container justifyContent="center" alignItems="center" className={styles.mainGrid}>
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
             <Grid item xs={4} className={styles.headerGrid}>
@@ -53,5 +56,6 @@ export default function apartmentComplexes(props) {
                 own 10% of the house with an initial value of $500,000.
             </Grid>
         </Grid>
+        </>
     )
 }

@@ -5,6 +5,7 @@ import { useEthers, useTokenBalance, useContractFunction } from "@usedapp/core";
 import { constants, utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 
+import Navigation from '../components/Navigation';
 import styles from '../styles/presale.module.css';
 import CHESPreSale from "../contracts/ChainEstatePreSale.json";
 import chainConfig from "../chain-config.json";
@@ -83,6 +84,8 @@ export default function PreSale(props) {
     }, [preSalePurchaseState])
 
     return (
+        <>
+        <Navigation useDarkTheme={props.useDarkTheme} setUseDarkTheme={props.setUseDarkTheme} />
         <Grid container justifyContent="center" className={styles.mainGrid}>
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
             <Grid item xs={3} className={styles.headerGrid}>
@@ -156,5 +159,6 @@ export default function PreSale(props) {
             </Grid>
             */}
         </Grid>
+        </>
     )
 }

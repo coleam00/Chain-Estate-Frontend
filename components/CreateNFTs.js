@@ -23,10 +23,9 @@ export default function CreateNFTs(props) {
     const nftInterface = new utils.Interface(nftAbi);
     const nftContract = new Contract(CHESNFTAddress, nftInterface);
 
-    // const [fileUrl, setFileUrl] = useState("https://bafybeicsrjjqj6zoivajhmvjezuoa2oweldy2j5hvjd3vff5m4gf5bzdhu.ipfs.infura-ipfs.io/");
     const [fileUrl, setFileUrl] = useState("");
     const [inputError, setInputError] = useState("");
-    const [NFTPrice, setNFTPrice] = useState(0.0);
+    const [listingFee, setListingFee] = useState(0.0);
     const [NFTName, setNFTName] = useState("");
     const [NFTDescription, setNFTDescription] = useState("");
     const [propertyId, setPropertyId] = useState(0);
@@ -58,7 +57,7 @@ export default function CreateNFTs(props) {
       }
   
       async function uploadToIPFS() {
-        if (!NFTName || !NFTDescription || !NFTPrice || !fileUrl) return
+        if (!NFTName || !NFTDescription || !listingFee || !fileUrl) return
         /* first, upload to IPFS */
         const data = JSON.stringify({
             NFTName, NFTDescription, image: fileUrl
@@ -74,9 +73,10 @@ export default function CreateNFTs(props) {
       }
 
     async function createCHESNFT() {
-        if (propertyId >= 0 && NFTPrice > 0 && NFTName != "" && NFTDescription != "") {
+        if (propertyId >= 0 && listingFee > 0 && NFTName != "" && NFTDescription != "") {
             const url = await uploadToIPFS();
-            createNFT(url, propertyId);
+            const listingFeeConverted = ethers.utils.parseUnits(listingFee, 'ether');
+            createNFT(url, propertyId, listingFeeConverted);
             setCreatingNFT(true);
         }
     }
@@ -96,14 +96,14 @@ export default function CreateNFTs(props) {
     }, [createNFTState])
 
     const isNumeric = stringToTest => {
-        return !isNaN(stringToTest) && !isNaN(parseFloat(stringToTest));
+        return !isNaN(stringToTest) && !isNaN(parseInt(stringToTest));
     }
 
-    const updateNFTPrice = event => {
+    const updateListingFee = event => {
         const newAmount = event.target.value;
 
         if (isNumeric(+newAmount) || newAmount == ".") {
-            setNFTPrice(event.target.value);
+            setListingFee(event.target.value);
         }
         if (newAmount > 0.0) {
             setInputError("");
@@ -145,8 +145,8 @@ export default function CreateNFTs(props) {
                                             value={NFTName} onChange={(e) => {setNFTName(e.target.value)}} className={styles.CHESPurchaseInput} />
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <TextField error={inputError != ""} label="Price in CHES" helperText={inputError}
-                                            value={NFTPrice} onChange={updateNFTPrice} className={styles.CHESPurchaseInput} />
+                                        <TextField error={inputError != ""} label="Listing Fee" helperText={inputError}
+                                            value={listingFee} onChange={updateListingFee} className={styles.CHESPurchaseInput} />
                                     </Grid>
                                     <Grid item xs={4}>
                                         <TextField error={inputError != ""} label="Property ID" helperText={inputError}
@@ -176,7 +176,7 @@ export default function CreateNFTs(props) {
                             <CardActions>
                                 <Button size="small" variant="contained" color="primary" onClick={createCHESNFT}
                                     className={clsx(styles.cardBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}
-                                    disabled={creatingNFT || NFTPrice <= 0.0 || fileUrl == "" || NFTName == "" || NFTDescription == "" || propertyId == 0}>
+                                    disabled={creatingNFT || listingFee <= 0.0 || fileUrl == "" || NFTName == "" || NFTDescription == "" || propertyId == 0}>
                                     {creatingNFT && <CircularProgress size={18} color="secondary"/>} 
                                     {creatingNFT ? <>&nbsp; Creating NFT</> : "Create NFT"}
                                 </Button>

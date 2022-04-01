@@ -1,7 +1,7 @@
 .airdropGrid {
     padding-bottom: 20vh !important;
     padding-top: 4.5% !important;
-    margin-top: 0.5% !important;
+    margin-top: 2.5% !important;
     margin-bottom: 1% !important;
     text-align: center !important;
 }
@@ -56,6 +56,14 @@
     margin-top: -1% !important;
 }
 
+.navIcons {
+    font-size: 20px !important;
+}
+
+.navOptionsListItem {
+    padding-left: 10px !important;
+}
+
 .airdropContentCard {
     display: flex !important;
     justify-content: center !important;
@@ -72,8 +80,28 @@
     font-size: 20px !important;
 }
 
+.darkModeIcon {
+    color: var(--dark-theme-primary-color);
+}
+
+.lightModeIcon {
+    color: gray;
+}
+
+.iconSizeTheme {
+    font-size: 2.2rem !important;
+}
+
 .gridTopMargin {
     margin-top: 10% !important;
+}
+
+.CHESBalanceDiv {
+    margin-right: 2% !important;
+}
+
+.transactionHashLink {
+    color: white !important;
 }
 
 .redText {
@@ -85,18 +113,20 @@
 }
 
 .mainGrid {
-    margin-top: 5% !important;
+    padding-top: 4.5% !important;
+    margin-top: 2.5% !important;
     margin-bottom: 1% !important;
     min-height: 20vh !important;
 }
 
 .marketplaceFunctionGrid {
-    margin-top: 5% !important;
+    margin-top: 2% !important;
     min-height: 90vh !important;
 }
 
 .header {
     text-align: center !important;
+    margin-top: 6% !important;
     margin-bottom: 1% !important;
 }
 
@@ -187,7 +217,7 @@
 }
 
 .connectBtn {
-    margin-top: 10% !important;
+    margin-left: 0% !important;
 }
 
 .cardBtn {
@@ -296,6 +326,34 @@
     margin-bottom: 5% !important;
 }
 
+@media (min-width: 750px) {
+    .navOptionsListItem {
+        display: none !important;
+    }
+}
+
+@media (max-width: 950px) {
+    .CHESBalanceDiv {
+        display: none !important;
+    }
+}
+
+@media (min-width: 950px) {
+    .airdropBalanceGrid {
+        display: none !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .changeThemeDiv {
+        display: none !important;
+    }
+
+    .largeScreenConnectBtn {
+        display: none !important;
+    }
+}
+
 @media (max-width: 900px) {
     .spacingGrid {
         max-width: 25% !important;
@@ -336,9 +394,21 @@
     }
 }
 
+@media (max-width: 1100px) {
+    .header {
+        margin-top: 12% !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .header {
+        margin-top: 16% !important;
+    }
+}
+
 @media (max-width: 650px) {
     .header {
-        margin-top: 8% !important;
+        margin-top: 20% !important;
     }
 
     .comingSoonText {

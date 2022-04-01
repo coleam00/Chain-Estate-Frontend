@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Grid, Typography, Button, CircularProgress, Card } from '@mui/material';
+import { Grid, Typography, Button, CircularProgress, Card} from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import clsx from 'clsx';
@@ -9,7 +9,7 @@ import { constants, utils, ethers } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 import { IconContext } from "react-icons";
 import { ImCheckmark } from "react-icons/im";
-import { FcCheckmark, FcCancel } from "react-icons/fc";
+import { FcCancel } from "react-icons/fc";
 
 import CHESAirdrops from "../contracts/ChainEstateAirDrop.json";
 import styles from '../styles/marketplace.module.css';
@@ -57,7 +57,9 @@ export default function Airdrops(props) {
     const [loadedAirdropActive, setLoadedAirdropActive] = useState(false);
     const [showClaimSuccess, setShowClaimSuccess] = useState(false);
     const [showClaimFail, setShowClaimFail] = useState(false);
+    const [showPendingTransaction, setShowPendingTransaction] = useState(false);
     const [claimErrorText, setClaimErrorText] = useState("");
+    const [transactionHash, setTransactionHash] = useState("");
 
     useEffect(() => {
         airDropActive.then(airDropActiveResult => {
@@ -79,17 +81,23 @@ export default function Airdrops(props) {
             setClaimingAirdropRewards(false);
             setShowClaimSuccess(true);
             setShowClaimFail(false);
+            setShowPendingTransaction(false);
+            setTransactionHash(claimAirdropState.transaction.hash);
         }
         else if (claimAirdropState.status === "Exception") {
             setClaimingAirdropRewards(false);
             setShowClaimSuccess(false);
             setShowClaimFail(true);
+            setShowPendingTransaction(false);
             setClaimErrorText(claimAirdropState.errorMessage);
+        }
+        else if (claimAirdropState.status === "Mining") {
+            setShowPendingTransaction(true);
+            setTransactionHash(claimAirdropState.transaction.hash);
         }
     }, [claimAirdropState])
 
     return (
-        <div className={styles.test}>
         <Grid container justifyContent="center" className={clsx(styles.airdropGrid, !isConnected || !loadedAirdropActive ? styles.airdropGridBeforeLoad : "", isConnected && loadedAirdropActive ? styles.airdropGridBackground : "", isConnected && loadedAirdropActive && props.useDarkTheme ? styles.airdropGridShadowDark : isConnected && loadedAirdropActive ? styles.airdropGridShadowLight : "")}>
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
                 <Grid item xs={4} className={styles.headerGrid}>
@@ -120,12 +128,17 @@ export default function Airdrops(props) {
                         <Card className={clsx(styles.customCard, props.useDarkTheme ? styles.airDropCardDark : styles.airDropCardLight)}>
                             <Snackbar open={showClaimSuccess} autoHideDuration={6000} onClose={() => {setShowClaimSuccess(false)}}>
                                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowClaimSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                                    CHES Airdrop rewards claimed successfully!!
+                                    CHES Airdrop rewards claimed successfully!! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
                                 </MuiAlert>
                             </Snackbar>
                             <Snackbar open={showClaimFail} autoHideDuration={6000} onClose={() => {setShowClaimFail(false)}}>
                                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowClaimFail(false)}} severity="error" sx={{ width: '100%' }} >
                                     Airdrop Claim Failed: {claimErrorText.replace("made to close", "made too close")}
+                                </MuiAlert>
+                            </Snackbar>
+                            <Snackbar open={showPendingTransaction} autoHideDuration={20000} onClose={() => {setShowPendingTransaction(false)}}>
+                                <MuiAlert elevation={6} variant="filled" onClose={() => {setShowPendingTransaction(false)}} severity="info" sx={{ width: '100%' }} >
+                                    Processing airdrop claim. Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
                                 </MuiAlert>
                             </Snackbar>
                             <Grid container justifyContent="center" className={styles.airDropContentGrid}>
@@ -139,7 +152,7 @@ export default function Airdrops(props) {
                                         {claimingAirdropRewards ? <>&nbsp; Claiming</> : "Claim Airdrop"}
                                     </Button>
                                 </Grid>
-                                <Grid item xs={10} md={5} className={styles.gridTopMargin}>
+                                <Grid item xs={10} md={5} className={clsx(styles.airdropBalanceGrid, styles.gridTopMargin)}>
                                     <Card className={styles.airdropContentCard}>
                                         Balance: {tokenBalance ? Number((+ethers.utils.formatEther(BigInt(tokenBalance._hex).toString(10))).toFixed(2)).toLocaleString() : 0} CHES
                                     </Card>
@@ -154,7 +167,7 @@ export default function Airdrops(props) {
                                                 <div className={styles.greenText}>
                                                         <ImCheckmark className={styles.airdropActiveIcon} /> Airdrop is Active!
                                                     </div>
-                                              </IconContext.Provider>
+                                            </IconContext.Provider>
 
                                             )
                                         }
@@ -173,6 +186,5 @@ export default function Airdrops(props) {
                 )
             }
         </Grid>
-        </div>
     )
 }

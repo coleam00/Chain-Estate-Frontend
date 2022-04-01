@@ -70,7 +70,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
     const isConnected = account !== undefined;
 
     return (
-        <Grid container justifyContent="center" className={useDarkTheme ? styles.navGridDark : styles.navGridLight}>
+        <Grid container justifyContent="center" className={styles.navGrid}>
             <Snackbar open={showWalletConnectionFailed} autoHideDuration={6000} onClose={() => {setShowWalletConnectionFailed(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowWalletConnectionFailed(false)}} severity="error" sx={{ width: '100%' }} >
                     Failed to connect web3 wallet. Make sure you have a browser wallet like MetaMask installed.
@@ -101,21 +101,14 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                                 Home
                             </Typography>
                         </Nav.Link>
-                        {/*
-                        <Nav.Link href="/marketplace" className={styles.navPadding} >
+                        <Nav.Link href="/dapp" className={styles.navPadding} >
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
-                                NFT Marketplace
+                                DApp
                             </Typography>
                         </Nav.Link>
-                        <Nav.Link href="/mynfts" className={styles.navPadding} >
+                        <Nav.Link className={styles.navPadding} onClick={() => moveToSection("tokenomics")}>
                             <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
-                                My NFTs
-                            </Typography>
-                        </Nav.Link>
-                        */}
-                        <Nav.Link href="/airdrops" className={styles.navPadding} >
-                            <Typography variant="h6" className={clsx(useDarkTheme ? styles.navbarDarkCustom : styles.navbarLightCustom, styles.navText)}>
-                                Airdrops
+                                Tokenomics
                             </Typography>
                         </Nav.Link>
                         <Nav.Link className={styles.navPadding} onClick={() => moveToSection("roadmap")}>

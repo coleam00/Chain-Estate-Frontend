@@ -3,9 +3,7 @@ import { ThemeProvider, createTheme, Paper } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { DAppProvider, Rinkeby, BSC, BSCTestnet } from '@usedapp/core';
 
-import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -95,8 +93,7 @@ function MyApp({ Component, pageProps }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Paper className="mainPaper">
-          <Navigation useDarkTheme={useDarkTheme} setUseDarkTheme={setUseDarkTheme} />
-          <Component {...pageProps} useDarkTheme={useDarkTheme} />
+          <Component {...pageProps} useDarkTheme={useDarkTheme} setUseDarkTheme={setUseDarkTheme} />
           <Footer />
         </Paper>
       </DAppProvider>

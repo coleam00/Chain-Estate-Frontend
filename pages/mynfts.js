@@ -6,6 +6,7 @@ import { constants } from "ethers";
 import styles from '../styles/marketplace.module.css';
 import chainConfig from "../chain-config.json";
 
+import Navigation from '../components/Navigation';
 import ListNFTs from "../components/ListNFTs";
 
 export default function MyNFTs(props) {
@@ -16,6 +17,8 @@ export default function MyNFTs(props) {
     const isConnected = account !== undefined;
 
     return (
+        <>
+        <Navigation useDarkTheme={props.useDarkTheme} setUseDarkTheme={props.setUseDarkTheme} />
         <Grid container justifyContent="center" className={styles.mainGrid}>
             <Grid item xs={4} className={styles.spacingGrid}></Grid>
             <Grid item xs={4} className={styles.headerGrid}>
@@ -27,5 +30,6 @@ export default function MyNFTs(props) {
             
             <ListNFTs {...props} />
         </Grid>
+        </>
     )
 }

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Grid, Typography } from '@mui/material';
 import clsx from 'clsx';
 
+import Navigation from '../components/Navigation';
 import colePic from '../public/Cole.png';
 import sydneyPic from '../public/Sydney.png';
 import zachPic from '../public/Zach.png';
@@ -10,6 +11,8 @@ import { FaLinkedin } from 'react-icons/fa';
 
 export default function team(props) {
     return (
+        <>
+        <Navigation useDarkTheme={props.useDarkTheme} setUseDarkTheme={props.setUseDarkTheme} />
         <Grid container justifyContent="center" className={styles.mainGrid}>
             <Grid item xs={3} className={styles.spacingGrid}></Grid>
             <Grid item xs={4} className={styles.headerGrid}>
@@ -65,5 +68,6 @@ export default function team(props) {
                 </Grid>
             </Grid>
         </Grid>
+        </>
     )
 }
