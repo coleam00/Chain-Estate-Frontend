@@ -128,7 +128,7 @@ export default function Airdrops(props) {
                         <Card className={clsx(styles.customCard, props.useDarkTheme ? styles.airDropCardDark : styles.airDropCardLight)}>
                             <Snackbar open={showClaimSuccess} autoHideDuration={6000} onClose={() => {setShowClaimSuccess(false)}}>
                                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowClaimSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                                    CHES Airdrop rewards claimed successfully!! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                                    CHES Airdrop rewards claimed successfully!! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                                 </MuiAlert>
                             </Snackbar>
                             <Snackbar open={showClaimFail} autoHideDuration={6000} onClose={() => {setShowClaimFail(false)}}>
@@ -138,7 +138,7 @@ export default function Airdrops(props) {
                             </Snackbar>
                             <Snackbar open={showPendingTransaction} autoHideDuration={20000} onClose={() => {setShowPendingTransaction(false)}}>
                                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowPendingTransaction(false)}} severity="info" sx={{ width: '100%' }} >
-                                    Processing airdrop claim. Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                                    Processing airdrop claim. Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                                 </MuiAlert>
                             </Snackbar>
                             <Grid container justifyContent="center" className={styles.airDropContentGrid}>

@@ -308,7 +308,7 @@ export default function ListNFTs(props) {
             </Snackbar>
             <Snackbar open={showListingSuccess} autoHideDuration={6000} onClose={() => {setShowListingSuccess(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowListingSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                    Listing Succeeded! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                    Listing Succeeded! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                 </MuiAlert>
             </Snackbar>
             <Snackbar open={showTransactionCancel} autoHideDuration={6000} onClose={() => {setShowTransactionCancel(false)}}>
@@ -318,7 +318,7 @@ export default function ListNFTs(props) {
             </Snackbar>
             <Snackbar open={showCancelSuccess} autoHideDuration={6000} onClose={() => {setShowCancelSuccess(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowCancelSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                    Listing Canceled Successfully! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                    Listing Canceled Successfully! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                 </MuiAlert>
             </Snackbar>
             <Snackbar open={showCancelFail} autoHideDuration={6000} onClose={() => {setShowCancelFail(false)}}>
@@ -328,7 +328,7 @@ export default function ListNFTs(props) {
             </Snackbar>
             <Snackbar open={showPendingTransaction} autoHideDuration={20000} onClose={() => {setShowPendingTransaction(false)}}>
                 <MuiAlert elevation={6} variant="filled" onClose={() => {setShowPendingTransaction(false)}} severity="info" sx={{ width: '100%' }} >
-                    {processingMessage} Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                    {processingMessage} Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                 </MuiAlert>
             </Snackbar>
             <Modal aria-labelledby="ListNFTModal" centered show={showListNFTModal} onHide={() => setShowListNFTModal(false)}>

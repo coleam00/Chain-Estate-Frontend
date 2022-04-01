@@ -208,7 +208,7 @@ export default function ViewMarketplaceNFTs(props) {
                 </Snackbar>
                 <Snackbar open={showPurchaseSuccess} autoHideDuration={6000} onClose={() => {setShowPurchaseSuccess(false)}}>
                     <MuiAlert elevation={6} variant="filled" onClose={() => {setShowPurchaseSuccess(false)}} severity="success" sx={{ width: '100%' }} >
-                        Purchase Succeeded! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                        Purchase Succeeded! Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                     </MuiAlert>
                 </Snackbar>
                 <Snackbar open={showTransactionCancel} autoHideDuration={6000} onClose={() => {setShowTransactionCancel(false)}}>
@@ -218,7 +218,7 @@ export default function ViewMarketplaceNFTs(props) {
                 </Snackbar>
                 <Snackbar open={showPendingTransaction} autoHideDuration={20000} onClose={() => {setShowPendingTransaction(false)}}>
                     <MuiAlert elevation={6} variant="filled" onClose={() => {setShowPendingTransaction(false)}} severity="info" sx={{ width: '100%' }} >
-                        {processingMessage} Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank">{transactionHash}</a>
+                        {processingMessage} Transaction hash: <a className={styles.transactionHashLink} href={`https://bscscan.com/tx/${transactionHash}`} target="_blank" rel="noreferrer" >{transactionHash}</a>
                     </MuiAlert>
                 </Snackbar>
                 {
