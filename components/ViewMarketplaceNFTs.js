@@ -256,7 +256,7 @@ export default function ViewMarketplaceNFTs(props) {
                                             <div key={i} className={clsx(styles.cardDiv, "rounded-xl overflow-hidden")} onMouseEnter={() => setCurrNFT(nft.itemId)} onMouseLeave={() => setCurrNFT(-1)}>
                                                 <img src={nft.image} className={clsx(styles.NFTImage)} />
                                                 <Grid container justifyContent="center" alignItems="center" className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>
-                                                    <Grid item xs={7} className={styles.nftNameAndDesc}>
+                                                    <Grid item xs={8} className={styles.nftNameAndDesc}>
                                                         <Typography variant="p" component="div" className={clsx(styles.NFTName, "text-2xl font-bold")}>
                                                             {nft.NFTName}
                                                         </Typography>
@@ -286,12 +286,12 @@ export default function ViewMarketplaceNFTs(props) {
                                                             )
                                                         }
                                                     </Grid>
-                                                    <Grid item xs={5} className={styles.nftPrice}>
+                                                    <Grid item xs={4} className={styles.nftPrice}>
                                                         <Typography variant="p" component="div" className={clsx(styles.NFTPrice, "font-bold")}>
                                                             <ImPriceTag /> Price
                                                         </Typography>
                                                         <Typography variant="p" component="div" className={clsx(styles.NFTPrice, "font-bold mt-3")}>
-                                                            {nft.price} CHES
+                                                            {Number(nft.price).toLocaleString()} CHES
                                                         </Typography>
                                                     </Grid>
                                                 </Grid>

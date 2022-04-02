@@ -467,7 +467,7 @@ export default function ListNFTs(props) {
                                                 <div key={i} className={clsx(styles.cardDiv, "rounded-xl overflow-hidden")} onMouseEnter={() => setCurrListedNFTViewed(nft.itemId)} onMouseLeave={() => setCurrListedNFTViewed(-1)}>
                                                     <img src={nft.image} className={clsx(styles.NFTImage)} />
                                                     <Grid container justifyContent="center" alignItems="center" className={clsx(props.useDarkTheme ? styles.NFTTextDark : styles.NFTTextLight, "p-4")}>
-                                                        <Grid item xs={7} className={styles.nftNameAndDesc}>
+                                                        <Grid item xs={8} className={styles.nftNameAndDesc}>
                                                             <Typography variant="p" component="div" className={clsx(styles.NFTName, "text-2xl font-bold")}>
                                                                 {nft.NFTName}
                                                             </Typography>
@@ -482,18 +482,18 @@ export default function ListNFTs(props) {
                                                                 (currListedNFTViewed == nft.itemId || currNFTCanceling == nft.itemId) && (
                                                                     <Button size="small" variant="contained" color="primary" onClick={() => cancelNFTListing(nft.itemId)}
                                                                         className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={cancelingNFTListing}>
-                                                                        {cancelingNFTListing == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
-                                                                        {cancelingNFTListing == nft.itemId ? <>&nbsp; Canceling</> : "Cancel Listing"}
+                                                                        {currNFTCanceling == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
+                                                                        {currNFTCanceling == nft.itemId ? <>&nbsp; Canceling</> : "Cancel Listing"}
                                                                     </Button>
                                                                 )
                                                             }
                                                         </Grid>
-                                                        <Grid item xs={5} className={styles.nftPrice}>
+                                                        <Grid item xs={4} className={styles.nftPrice}>
                                                             <Typography variant="p" component="div" className={clsx(styles.NFTPrice, "font-bold")}>
                                                                 <ImPriceTag /> Price
                                                             </Typography>
                                                             <Typography variant="p" component="div" className={clsx(styles.NFTPrice, "font-bold mt-3")}>
-                                                                {nft.price} CHES
+                                                                {Number(nft.price).toLocaleString()} CHES
                                                             </Typography>
                                                         </Grid>
                                                     </Grid>
