@@ -284,11 +284,18 @@
     font-size: 12px !important;
 }
 
-.listNFTBtn {
+.buyNFTButton {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 16% !important;
     margin-bottom: 6% !important;
+    text-align: center !important;
+}
+
+.listNFTBtn {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 6% !important;
     text-align: center !important;
 }
 

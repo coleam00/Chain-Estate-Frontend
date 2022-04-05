@@ -270,7 +270,7 @@ export default function ViewMarketplaceNFTs(props) {
                                                         {
                                                             (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId != nft.itemId && (
                                                                 <Button size="small" variant="contained" color="primary" onClick={() => startNFTPurchase(nft.itemId, nft.price)}
-                                                                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={approvingCHESTransfer !== -1}>
+                                                                    className={clsx(styles.buyNFTButton, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={approvingCHESTransfer !== -1}>
                                                                     {approvingCHESTransfer == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
                                                                     {approvingCHESTransfer == nft.itemId ? <>&nbsp; Approving</> : "Buy Now"}
                                                                 </Button>
@@ -279,7 +279,7 @@ export default function ViewMarketplaceNFTs(props) {
                                                         {
                                                             (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId == nft.itemId && (
                                                                 <Button size="small" variant="contained" color="primary" onClick={() => finishNFTPurchase(nft.itemId, nft.price)}
-                                                                    className={clsx(styles.listNFTBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={purchasingNFT !== -1}>
+                                                                    className={clsx(styles.buyNFTButton, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={purchasingNFT !== -1}>
                                                                     {purchasingNFT == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
                                                                     {purchasingNFT == nft.itemId ? <>&nbsp; Buying</> : "Purchase"}
                                                                 </Button>
