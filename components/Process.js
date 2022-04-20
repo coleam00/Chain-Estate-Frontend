@@ -249,7 +249,7 @@ export default function Process(props) {
           </Button>
         </Grid>
         <Grid item xs={2} className={clsx(styles.largeBtnGrid, "mt-4")}>
-          <Button href="https://pancakeswap.finance/swap?outputCurrency=0x31832D10f68D3112d847Bd924331F3d182d268C4" target="_blank" rel="noreferrer" id="getStartedBtn" ref={getStartedBtnRef} variant="contained" color="secondary" 
+          <Button href="https://pancakeswap.finance/swap?outputCurrency=0xe3647FB6024355dBC93133e6c4c74277366A4bdC" target="_blank" rel="noreferrer" id="getStartedBtn" ref={getStartedBtnRef} variant="contained" color="secondary" 
             className={clsx(styles.largeBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
             Get Started
           </Button>
