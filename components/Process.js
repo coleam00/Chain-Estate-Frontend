@@ -156,7 +156,7 @@ export default function Process(props) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button href="https://pancakeswap.finance/swap?outputCurrency=0x31832D10f68D3112d847Bd924331F3d182d268C4" target="_blank" rel="noreferrer" size="small" variant="contained" color="secondary"
+                <Button href="https://pancakeswap.finance/swap?outputCurrency=0xe3647FB6024355dBC93133e6c4c74277366A4bdC" target="_blank" rel="noreferrer" size="small" variant="contained" color="secondary"
                   className={clsx(styles.cardBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)}>
                   Swap for CHES on PancakeSwap
                 </Button>
@@ -259,7 +259,7 @@ export default function Process(props) {
             CHES token contract address:
           </Typography>
           <Typography variant="h5" ref={CHESInfo2} id="CHESInfo2" className={styles.addressText}>
-            0x31832D10f68D3112d847Bd924331F3d182d268C4
+            0xe3647FB6024355dBC93133e6c4c74277366A4bdC
           </Typography>
           <br/>
           <Typography variant="h6" ref={CHESInfo3} id="CHESInfo3">

@@ -5,6 +5,21 @@
         "97": "bsctest",
         "56": "binance"
     },
+    "CHESV2TokenAddresses": {
+        "rinkeby": "",
+        "bsctest": "0xaB527377C920009d92029Eb6C5a8C8c27591ad56",
+        "binance": "0xe3647FB6024355dBC93133e6c4c74277366A4bdC"
+    },
+    "CHESV2AirDropAddresses": {
+        "rinkeby": "",
+        "bsctest": "0x69735C045CaaD6ACaD7595e3E34c35f77F1ec73b",
+        "binance": "0x23deef6E65Ca223ae56E1927912D94e1217A27d3"
+    },
+    "CHESTokenClaimAddresses": {
+        "rinkeby": "",
+        "bsctest": "0x7975F710Fb0Ba0C0f680c50767e1071F38D5997b",
+        "binance": "0x074d07B5c9F0388D306Cfe00786C94fCA35166e4"
+    },
     "CHESTokenAddresses": {
         "rinkeby": "0xd2cf313CdAD8F99bCdEd14120d679c15218b787A",
         "bsctest": "0x42b3be0E4769D5715b7D5a8D8D765C2E9D2aeD9D",

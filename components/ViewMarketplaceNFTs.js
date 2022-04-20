@@ -40,7 +40,7 @@ export default function ViewMarketplaceNFTs(props) {
     const { account, chainId } = useEthers();
     // const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
     const networkName = "binance";
-    const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;
+    const CHESAddress = chainId ? chainConfig["CHESV2TokenAddresses"][networkName] : constants.AddressZero;
     const CHESNFTAddress = chainId ? chainConfig["CHESNFTAddresses"][networkName] : constants.AddressZero;
     const CHESMarketplaceAddress = chainId ? chainConfig["CHESNFTMarketplaceAddresses"][networkName] : constants.AddressZero;
 
@@ -102,8 +102,9 @@ export default function ViewMarketplaceNFTs(props) {
             const currTokenURI = await nftContractReadOnly.tokenURI(currTokenId);
             const metaData = await axios.get(currTokenURI);
             const price = (+ethers.utils.formatEther(BigInt(marketItemsResult[i].price._hex).toString(10))).toFixed(1).toString();
+            const priceUnrounded = (+ethers.utils.formatEther(BigInt(marketItemsResult[i].price._hex).toString(10))).toString();
             const itemId = BigInt(marketItemsResult[i].itemId._hex).toString(10);
-            marketplaceNFTArray.push(Object.assign({}, metaData.data, {price: price, itemId: itemId}));
+            marketplaceNFTArray.push(Object.assign({}, metaData.data, {price: price, priceUnrounded: priceUnrounded, itemId: itemId}));
         }
 
         setMarketplaceNFTs(JSON.parse(JSON.stringify(marketplaceNFTArray)));
@@ -269,7 +270,7 @@ export default function ViewMarketplaceNFTs(props) {
                                                         }
                                                         {
                                                             (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId != nft.itemId && (
-                                                                <Button size="small" variant="contained" color="primary" onClick={() => startNFTPurchase(nft.itemId, nft.price)}
+                                                                <Button size="small" variant="contained" color="primary" onClick={() => startNFTPurchase(nft.itemId, nft.priceUnrounded)}
                                                                     className={clsx(styles.buyNFTButton, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={approvingCHESTransfer !== -1}>
                                                                     {approvingCHESTransfer == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
                                                                     {approvingCHESTransfer == nft.itemId ? <>&nbsp; Approving</> : "Buy Now"}
@@ -278,7 +279,7 @@ export default function ViewMarketplaceNFTs(props) {
                                                         }
                                                         {
                                                             (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId == nft.itemId && (
-                                                                <Button size="small" variant="contained" color="primary" onClick={() => finishNFTPurchase(nft.itemId, nft.price)}
+                                                                <Button size="small" variant="contained" color="primary" onClick={() => finishNFTPurchase(nft.itemId, nft.priceUnrounded)}
                                                                     className={clsx(styles.buyNFTButton, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={purchasingNFT !== -1}>
                                                                     {purchasingNFT == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
                                                                     {purchasingNFT == nft.itemId ? <>&nbsp; Buying</> : "Purchase"}

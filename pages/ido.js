@@ -109,7 +109,7 @@ export default function PreSale(props) {
                 </Typography>
             </Grid>
             <Grid item xs={8} className={styles.swapBtnGrid}>
-                <Button href="https://pancakeswap.finance/swap?outputCurrency=0x31832D10f68D3112d847Bd924331F3d182d268C4" target="_blank" rel="noreferrer" variant="contained" 
+                <Button href="https://pancakeswap.finance/swap?outputCurrency=0xe3647FB6024355dBC93133e6c4c74277366A4bdC" target="_blank" rel="noreferrer" variant="contained" 
                 className={clsx(styles.swapBtn, props.useDarkTheme ? styles.btnLight : styles.btnDark)}>
                     Swap for CHES on PancakeSwap
                 </Button>

@@ -37,8 +37,8 @@ async function useAirdropLive(
 export default function Airdrops(props) {
     const { account, chainId } = useEthers();
     const networkName = "binance";
-    const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;
-    const CHESAirdropAddress = chainId ? chainConfig["CHESAirDropAddresses"][networkName] : constants.AddressZero;
+    const CHESAddress = chainId ? chainConfig["CHESV2TokenAddresses"][networkName] : constants.AddressZero;
+    const CHESAirdropAddress = chainId ? chainConfig["CHESV2AirDropAddresses"][networkName] : constants.AddressZero;
     const tokenBalance = useTokenBalance(CHESAddress, account);
     const isConnected = account !== undefined;
 

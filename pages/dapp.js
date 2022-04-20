@@ -11,6 +11,7 @@ import { constants, ethers } from "ethers";
 import { ImDroplet } from "react-icons/im";
 import { AiFillShop } from "react-icons/ai";
 import { BsFillHouseFill } from "react-icons/bs";
+import { RiHandCoinFill } from "react-icons/ri";
 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -21,6 +22,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Airdrops from "../components/Airdrops";
 import ViewMarketplaceNFTs from "../components/ViewMarketplaceNFTs";
 import ListNFTs from "../components/ListNFTs";
+import TokenMigration from "../components/TokenMigration";
 import styles from '../styles/marketplace.module.css';
 import chainConfig from "../chain-config.json";
 
@@ -53,7 +55,7 @@ export default function DApp(props) {
 
     const { account, activateBrowserWallet, deactivate, chainId } = useEthers();
     const networkName = "binance";
-    const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero
+    const CHESAddress = chainId ? chainConfig["CHESV2TokenAddresses"][networkName] : constants.AddressZero
     const tokenBalance = useTokenBalance(CHESAddress, account);
     const isConnected = account !== undefined;
 
@@ -103,6 +105,9 @@ export default function DApp(props) {
         }
         else if (hash == "#mynfts") {
             setCurrPage("ListNFTs");
+        }
+        else if (hash == "#v2migration") {
+            setCurrPage("V2Migration");
         }
     }
 
@@ -210,6 +215,12 @@ export default function DApp(props) {
                     </ListItemIcon>
                     <ListItemText primary="My NFTs" />
                 </ListItem>
+                <ListItem button onClick={() => updatePage("V2Migration", "v2migration")}>
+                    <ListItemIcon>
+                        <RiHandCoinFill className={styles.navIcons} />
+                    </ListItemIcon>
+                    <ListItemText primary="V2 CHES Migration" />
+                </ListItem>
 
                 <ListItem className={styles.navOptionsListItem}>
                     <div>
@@ -247,6 +258,11 @@ export default function DApp(props) {
             {
                 currPage == "ListNFTs" && (
                     <ListNFTs useDarkTheme={props.useDarkTheme} />
+                )
+            }
+            {
+                currPage == "V2Migration" && (
+                    <TokenMigration useDarkTheme={props.useDarkTheme} />
                 )
             }
         </div>

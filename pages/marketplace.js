@@ -12,7 +12,7 @@ import ViewMarketplaceNFTs from "../components/ViewMarketplaceNFTs";
 export default function Marketplace(props) {
     const { account, chainId } = useEthers();
     const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
-    const CHESAddress = chainId ? chainConfig["CHESTokenAddresses"][networkName] : constants.AddressZero;
+    const CHESAddress = chainId ? chainConfig["CHESV2TokenAddresses"][networkName] : constants.AddressZero;
     const tokenBalance = useTokenBalance(CHESAddress, account);
     const isConnected = account !== undefined;
 
