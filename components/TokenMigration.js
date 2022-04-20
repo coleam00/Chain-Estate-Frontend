@@ -159,10 +159,10 @@ export default function TokenMigration(props) {
                                 <Grid item xs={12}>
                                     <Button size="large" variant="contained" color="primary" onClick={() => tokenClaimAction()}
                                         className={clsx(styles.claimAirdropBtn, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={claimingTokens}>
-                                        {!approvingV1Transfer && !v1TransferApproved && "Start V2 CHES Migration"}
+                                        {!approvingV1Transfer && !v1TransferApproved && "Approve V2 CHES Migration"}
                                         {approvingV1Transfer && <CircularProgress size={18} color="secondary"/>} 
                                         {approvingV1Transfer && <>&nbsp; Approving</>}
-                                        {!claimingTokens && v1TransferApproved && "Finish V2 CHES Migration"}
+                                        {!claimingTokens && v1TransferApproved && "Migration V2 CHES Tokens"}
                                         {claimingTokens && <CircularProgress size={18} color="secondary"/>} 
                                         {claimingTokens && <>&nbsp; Claiming</>}
                                     </Button>
