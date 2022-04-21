@@ -266,7 +266,7 @@ export default function Process(props) {
             Txn hash for locking initial liquidity:
           </Typography>
           <Typography variant="h6" ref={CHESInfo4} id="CHESInfo4" className={styles.addressText2}>
-            0x3871a2498703aa47f0811e62293f606b413429346fd6c15e1e75de4eae59ea39
+            0x680530ee17ffd66f7ddef5ae0a11450ee85be3eca48ba78ce36dbb1d2d68b459
           </Typography>
           <br/>
           <Typography variant="h6" ref={CHESInfo5} id="CHESInfo5">
