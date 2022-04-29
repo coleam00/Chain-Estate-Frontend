@@ -26,7 +26,7 @@ import Airdrops from "../components/Airdrops";
 import ViewMarketplaceNFTs from "../components/ViewMarketplaceNFTs";
 import ListNFTs from "../components/ListNFTs";
 import TokenMigration from "../components/TokenMigration";
-import EmberCheckout from "../components/EmberCheckout";
+import EmbrCheckout from "../components/EmbrCheckout";
 import styles from '../styles/marketplace.module.css';
 import CHESToken from "../contracts/ChainEstateToken.json";
 import chainConfig from "../chain-config.json";
@@ -170,8 +170,8 @@ export default function DApp(props) {
         else if (hash == "#v2migration") {
             setCurrPage("V2Migration");
         }
-        else if (hash == "#embercheckout") {
-            setCurrPage("EmberCheckout");
+        else if (hash == "#embrcheckout") {
+            setCurrPage("EmbrCheckout");
         }
     }
 
@@ -323,11 +323,11 @@ export default function DApp(props) {
                     </ListItemIcon>
                     <ListItemText primary="V2 CHES Migration" />
                 </ListItem>
-                <ListItem button onClick={() => updatePage("EmberCheckout", "embercheckout")}>
+                <ListItem button onClick={() => updatePage("EmbrCheckout", "embrcheckout")}>
                     <ListItemIcon>
                         <BsCoin className={styles.navIcons} />
                     </ListItemIcon>
-                    <ListItemText primary="Ember Checkout" />
+                    <ListItemText primary="Embr Checkout" />
                 </ListItem>
 
                 <ListItem className={styles.navOptionsListItem}>
@@ -426,8 +426,8 @@ export default function DApp(props) {
                 )
             }
             {
-                currPage == "EmberCheckout" && (
-                    <EmberCheckout useDarkTheme={props.useDarkTheme} />
+                currPage == "EmbrCheckout" && (
+                    <EmbrCheckout useDarkTheme={props.useDarkTheme} />
                 )
             }
         </div>
