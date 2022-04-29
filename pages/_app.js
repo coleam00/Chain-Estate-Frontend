@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ThemeProvider, createTheme, Paper } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { DAppProvider, Rinkeby, BSC, BSCTestnet } from '@usedapp/core';
+import { DAppProvider, BSC, BSCTestnet } from '@usedapp/core';
 
 import Footer from '../components/Footer';
 import '../styles/globals.css';
@@ -71,17 +71,11 @@ function MyApp({ Component, pageProps }) {
   }, [useDarkTheme]);
 
   const config = {
-    networks: [BSCTestnet, BSC],
-    /*
-    readOnlyChainId: Rinkeby.chainId,
+    readOnlyChainId: BSC.chainID,
     readOnlyUrls: {
-      [Rinkeby.chainId]: 'https://mainnet.infura.io/v3/6072d26abea94891822694b3488ab955',
+      [BSC.chainID]: 'https://bsc-dataseed.binance.org/',
     },
-    multicallAddresses: {
-      ...MULTICALL_ADDRESSES,
-  },
-    multicallVersion: 2,
-    */
+    networks: [BSC, BSCTestnet],
   }
 
   return (

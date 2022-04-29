@@ -6,6 +6,14 @@
     text-align: center !important;
 }
 
+.emberGrid {
+    padding-bottom: 20vh !important;
+    min-height: 90vh !important;
+    margin-top: 2.5% !important;
+    margin-bottom: 1% !important;
+    text-align: center !important;
+}
+
 .airdropGridBeforeLoad {
     padding-bottom: 60vh !important;
 }
@@ -105,7 +113,7 @@
     margin-top: 10% !important;
 }
 
-.CHESBalanceDiv {
+.CHESBalance {
     margin-right: 2% !important;
 }
 
@@ -190,6 +198,10 @@
   
 .connectBtnLight:hover {
     color: white !important;
+}
+
+.metaMaskBtn {
+    margin-right: 0.75% !important;
 }
 
 .connectGrid {
@@ -343,6 +355,18 @@
     margin-bottom: 5% !important;
 }
 
+.greenPriceLight {
+    color: rgb(31, 194, 31) !important;
+}
+
+.greenPriceDark {
+    color: lime !important;
+}
+
+.redPrice {
+    color: red !important;
+}
+
 
 
 @media (min-width: 750px) {
@@ -351,18 +375,35 @@
     }
 }
 
-@media (max-width: 950px) {
-    .CHESBalanceDiv {
+@media (max-width: 1050px) {
+    .CHESBalance {
         display: none !important;
     }
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1050px) {
     .airdropBalanceGrid {
         display: none !important;
     }
     .tokenClaimV2BalanceGrid {
         display: none !important;
+    }
+    .CHESBalanceSmall {
+        display: none !important;
+    }
+}
+@media (max-width: 1250px) {
+    .CHESPrice {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1250px) {
+    .CHESPriceSmall {
+        display: none !important;
+    }
+    .CHESPriceVal {
+        margin-right: 2% !important;
     }
 }
 

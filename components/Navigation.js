@@ -22,6 +22,7 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
     const walletSections = ["marketplace", "mynfts", "createnfts", "airdrops"];
 
     const [isWalletPage, setIsWalletPage] = useState(false);
+    const [isConnecting, setIsConnecting] = useState(false);
     const [showWalletConnectionFailed, setShowWalletConnectionFailed] = useState(false);
     const [showWrongNetwork, setShowWrongNetwork] = useState(false);
 
@@ -157,18 +158,36 @@ export default function Navigation({useDarkTheme, setUseDarkTheme}) {
                         {
                             isWalletPage && (
                                 <div className={styles.connectBtnDiv}>
-                                    {isConnected ? (
+                                    {isConnected && (
                                         <Button size="small" variant="contained" color="primary" onClick={deactivate}
                                             className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
                                             Disconnect
                                         </Button>
-                                    ) : (
-                                        <Button size="small" variant="contained" color="primary" onClick={() => connectBrowserWallet()}
+                                    )} 
+
+                                    {!isConnected && !isConnecting && (
+                                        <Button size="small" variant="contained" color="primary" onClick={() => setIsConnecting(true)}
                                             className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
                                             Connect
                                         </Button>
-                                    )
-                                    }
+                                    )}
+
+                                    {!isConnected && isConnecting && (
+                                        <Grid container justifyContent="center" spacing={4}>
+                                            <Grid item xs={6}>
+                                                <Button size="small" variant="contained" color="primary" onClick={() => connectBrowserWallet()}
+                                                    className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
+                                                    MetaMask
+                                                </Button>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                                <Button size="small" variant="contained" color="primary" onClick={() => connectBrowserWallet()}
+                                                    className={useDarkTheme ? styles.connectBtnDark : styles.connectBtnLight}>
+                                                    WalletConnect
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
+                                    )}  
                                 </div>
                             )
                         }

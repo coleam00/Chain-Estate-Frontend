@@ -4,10 +4,9 @@ import MuiAlert from '@mui/material/Alert';
 import clsx from 'clsx';
 import axios from 'axios';
 import { useState, useEffect } from "react";
-import { useEthers, useTokenBalance, useContractFunction, useCall } from "@usedapp/core";
+import { useEthers, useTokenBalance, useContractFunction, useCall, useContractCall } from "@usedapp/core";
 import { constants, utils, ethers } from "ethers";
 import { Contract } from "@ethersproject/contracts";
-import Web3Modal from 'web3modal';
 import { ImPriceTag } from 'react-icons/im';
 
 import styles from '../styles/marketplace.module.css';
@@ -17,9 +16,11 @@ import CHESMarketplace from "../contracts/ChainEstateMarketplace.json";
 import chainConfig from "../chain-config.json";
 
 const network = "binance";
+const rpcEndpoint = "https://bsc-dataseed.binance.org/";
+const binanceChainId = 56;
 
 async function useMarketItems(
-    marketplaceContract
+    marketplaceContract, CHESMarketplaceAddress, marketplaceAbi
   ) {
     const { value, error } =
         useCall(
@@ -33,6 +34,15 @@ async function useMarketItems(
       console.error(error.message)
       return undefined
     }
+
+    if (!value) {
+        const provider = new ethers.providers.JsonRpcProvider(rpcEndpoint, { name: network, chainId: binanceChainId });
+        const marketplaceReadOnly = new ethers.Contract(CHESMarketplaceAddress, marketplaceAbi, provider);
+    
+        const returnVal = await marketplaceReadOnly.fetchMarketItems();
+        return returnVal;
+    }
+
     return value?.[0]
   }
 
@@ -40,9 +50,9 @@ export default function ViewMarketplaceNFTs(props) {
     const { account, chainId } = useEthers();
     // const networkName = chainId ? chainConfig["chainIds"][chainId] : "Not Connected";
     const networkName = "binance";
-    const CHESAddress = chainId ? chainConfig["CHESV2TokenAddresses"][networkName] : constants.AddressZero;
-    const CHESNFTAddress = chainId ? chainConfig["CHESNFTAddresses"][networkName] : constants.AddressZero;
-    const CHESMarketplaceAddress = chainId ? chainConfig["CHESNFTMarketplaceAddresses"][networkName] : constants.AddressZero;
+    const CHESAddress = chainConfig["CHESV2TokenAddresses"][networkName] ? chainConfig["CHESV2TokenAddresses"][networkName] : constants.AddressZero;
+    const CHESNFTAddress = chainConfig["CHESNFTAddresses"][networkName] ? chainConfig["CHESNFTAddresses"][networkName] : constants.AddressZero;
+    const CHESMarketplaceAddress = chainConfig["CHESNFTMarketplaceAddresses"][networkName] ? chainConfig["CHESNFTMarketplaceAddresses"][networkName] : constants.AddressZero;
 
     const tokenBalance = useTokenBalance(CHESAddress, account);
 
@@ -57,7 +67,7 @@ export default function ViewMarketplaceNFTs(props) {
     const marketplaceInterface = new utils.Interface(marketplaceAbi);
     const marketplaceContract = new Contract(CHESMarketplaceAddress, marketplaceInterface);
 
-    const marketItems = useMarketItems(marketplaceContract);
+    const marketItems = useMarketItems(marketplaceContract, CHESMarketplaceAddress, marketplaceAbi);
     const [marketplaceNFTs, setMarketplaceNFTs] = useState([]);
     const [currBuyNFTId, setCurrBuyNFTId] = useState(-1);
     const [currApprovedNFTId, setCurrApprovedNFTId] = useState(-1);
@@ -89,12 +99,7 @@ export default function ViewMarketplaceNFTs(props) {
         console.log("Updating marketplace NFTs.");
         let marketplaceNFTArray = [];
 
-        const web3Modal = new Web3Modal({
-            network: network,
-            cacheProvider: true,
-          })
-        const connection = await web3Modal.connect();
-        const provider = new ethers.providers.Web3Provider(connection);
+        const provider = new ethers.providers.JsonRpcProvider(rpcEndpoint, { name: network, chainId: binanceChainId });
         const nftContractReadOnly = new ethers.Contract(CHESNFTAddress, nftAbi, provider);
 
         for(let i = 0; i < marketItemsResult.length; i++) {
@@ -223,16 +228,7 @@ export default function ViewMarketplaceNFTs(props) {
                     </MuiAlert>
                 </Snackbar>
                 {
-                    !isConnected && (
-                        <Grid item xs={10} className="text-center">
-                            <Typography variant="h5" component="div">
-                                Connect Your Wallet in the Navigation Menu to View the Marketplace
-                            </Typography>
-                        </Grid>
-                    )
-                }
-                {
-                    isConnected && marketplaceNFTs.length == 0 && NFTsLoaded && (
+                    marketplaceNFTs.length == 0 && NFTsLoaded && (
                         <Grid item xs={10} className="text-center">
                             <Typography variant="h5" component="div">
                                 NFTs will appear here as they are loaded or added to the marketplace...
@@ -241,14 +237,14 @@ export default function ViewMarketplaceNFTs(props) {
                     )
                 }
                 {
-                    isConnected && marketplaceNFTs.length == 0 && !NFTsLoaded && (
+                    marketplaceNFTs.length == 0 && !NFTsLoaded && (
                         <Grid item xs={10} className="text-center mt-5">
                             <CircularProgress size={80} color="secondary" className={styles.loadingAirdropContent} />
                         </Grid>
                     )
                 }
                 {
-                    isConnected && marketplaceNFTs.length > 0 && (
+                    marketplaceNFTs.length > 0 && (
                         <Grid item xs={10}>
                             <Grid container justifyContent="center" alignItems="center" spacing={4}>
                                 {
@@ -269,7 +265,14 @@ export default function ViewMarketplaceNFTs(props) {
                                                             )
                                                         }
                                                         {
-                                                            (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId != nft.itemId && (
+                                                            (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId != nft.itemId && !isConnected && (
+                                                                <Typography variant="h5" component="div" className={clsx(styles.NFTDescription, "font-bold mt-3")}>
+                                                                    Connect Wallet to Purchase
+                                                                </Typography>
+                                                            )
+                                                        }
+                                                        {
+                                                            (currNFT == nft.itemId || currBuyNFTId == nft.itemId) && currApprovedNFTId != nft.itemId && isConnected && (
                                                                 <Button size="small" variant="contained" color="primary" onClick={() => startNFTPurchase(nft.itemId, nft.priceUnrounded)}
                                                                     className={clsx(styles.buyNFTButton, props.useDarkTheme ? styles.btnDark : styles.btnLight)} disabled={approvingCHESTransfer !== -1}>
                                                                     {approvingCHESTransfer == nft.itemId && <CircularProgress size={18} color="secondary"/>} 
