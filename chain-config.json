@@ -33,7 +33,7 @@
     "CHESNFTAddresses": {
         "rinkeby": "0x2e073804d7a09DA862230812806783Cfb0A5b1AC",
         "bsctest": "0x2941F00c3fC86C91333219C5cE43A174F48e500f",
-        "binance": "0xCce5CF0A3066C5B0C8296f951Df91E92C808DD26"
+        "binance": "0x2b2c820100e2106aea2695c8421558f19aad8061"
     },
     "CHESNFTMarketplaceAddresses": {
         "rinkeby": "0x058942C7De931125f44b0Ed3BD249734ec725196",
